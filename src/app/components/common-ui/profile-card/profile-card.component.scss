@@ -1,0 +1,40 @@
+.profile-card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--card-border);
+  padding: 32px 24px;
+  grid-gap: 32px;
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 4px;
+  }
+}
+
+.user {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  grid-gap: 20px;
+
+  &__avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+
+  &__name {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--card-border);
+  margin-right: 4px;
+}
