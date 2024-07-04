@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import "normalize";
+@import "fonts";
+
+:root {
+  --site-bg-color: #000000;
+  --font-color-light: #ffffff;
+  --font-color-dark: #000000;
+  --card-border: #ffffff;
+  --primary-color: #AE7AFF;
+}
+
+body {
+  font-family: "JetBrains Mono", sans-serif;
+  background-color: var(--site-bg-color);
+  color: var(--font-color-light);
+}
+
+.button {
+  border: none;
+  background: var(--primary-color);
+  color: var(--font-color-dark);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.h6 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 800;
+}
+
+.sub-title {
+  font-size: 14px;
+  line-height: 20px;
+}
