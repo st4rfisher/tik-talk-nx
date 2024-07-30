@@ -1,0 +1,54 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  height: 100dvh;
+  margin: 0 5%;
+}
+
+.login {
+  margin: auto;
+}
+
+.h1 {
+  margin-bottom: 60px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  margin-top: 8px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding-right: 48px;
+
+  &:internal-autofill-selected {
+    background-color: inherit;
+    outline: none;
+  }
+}
+
+.button {
+  &--primary {
+    width: 100%;
+    margin-top: 34px;
+  }
+
+  &--action {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+  }
+
+  &--active {
+    color: var(--primary-color);
+  }
+}

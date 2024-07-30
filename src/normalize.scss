@@ -220,6 +220,9 @@ button,
 [type="reset"],
 [type="submit"] {
     appearance: button;
+    border: none;
+    background: none;
+    outline: none;
 }
 
 /**

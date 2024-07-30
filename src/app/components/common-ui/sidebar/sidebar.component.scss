@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  padding: 20px 12px;
+}
+
+.logo {
+  margin: 0 0 20px 16px;
+}
+
+.menu-list {
+  display: grid;
+  grid-gap: 8px;
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  column-gap: 12px;
+  color: var(--light-color);
+  padding: 16px 12px;
+  cursor: pointer;
+  
+  &:hover,
+  &:focus-visible {
+    background-color: var(--dark-hover-color);
+  }
+}
