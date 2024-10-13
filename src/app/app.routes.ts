@@ -2,20 +2,26 @@ import { Routes } from '@angular/router';
 import { SearchComponent } from './pages/search/search.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { LayoutComponent } from './components/common-ui/layout/layout.component';
+import { LayoutComponent } from './components/layout/layout.component';
 import { accessGuard } from './guards/access.guard';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LayoutComponent, children: [
+    component: LayoutComponent,
+    children: [
       {
         path: '',
         component: SearchComponent
       },
       {
-        path: 'profile',
+        path: 'profile/:id',
         component: ProfileComponent
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent
       },
     ],
     canActivate: [accessGuard]

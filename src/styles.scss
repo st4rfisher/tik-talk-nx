@@ -9,6 +9,8 @@
   --border: #ffffff;
   --primary-color: #AE7AFF;
   --dark-hover-color: #161616;
+  --green-color: #98E9AB;
+  --danger-color: #E99898;
 }
 
 body {
@@ -20,20 +22,22 @@ body {
 }
 
 .button {
-  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border-radius: 2px;
   font-size: 14px;
   font-weight: 700;
   line-height: 24px;
   cursor: pointer;
-
-  &:active {
-    transform: translateY(4px) translateX(4px);
-  }
+  transition: color 0.2s, background-color 0.2s ease-in-out;
 
   &--action {
-    display: flex;
     color: var(--light-color);
-    fill: var(--light-color);
+
+    &:hover {
+      color: var(--primary-color);
+    }
   }
 
   &--primary {
@@ -41,6 +45,24 @@ body {
     background: var(--primary-color);
     color: var(--dark-color);
     padding: 10px 20px;
+
+    &:active {
+      transform: translateY(4px) translateX(4px);
+    }
+  }
+
+  &--secondary {
+    border: 1px solid var(--light-color);
+    color: var(--light-color);
+    padding: 14px 16px;
+
+    &:active {
+      transform: translateY(4px) translateX(4px);
+    }
+  }
+
+  &--danger {
+    color: var(--danger-color);
   }
 
   &--shadow {
@@ -70,6 +92,12 @@ body {
   font-weight: 800;
 }
 
+.h4 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 800;
+}
+
 .h6 {
   font-size: 18px;
   line-height: 24px;
@@ -82,8 +110,8 @@ body {
 }
 
 .label {
-  display: block;
-  font-weight: 700;
+  display: flex;
+  flex-direction: column;
   font-size: 12px;
   line-height: 16px;
 }
@@ -92,10 +120,53 @@ body {
   display: block;
   border: 1px solid var(--border);
   background-color: var(--dark-color);
-  border-radius: 4px;
-  padding: 12px 20px;
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
   color: var(--light-color);
+
+  &:focus {
+    outline: none;
+  }
+
+  &--border-bottom {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+textarea.input {
+  resize: none;
+  width: 100%;
+}
+
+.medium-text {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.regular-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.avatar {
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  margin-right: 4px;
 }

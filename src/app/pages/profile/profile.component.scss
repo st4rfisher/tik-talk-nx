@@ -1,0 +1,54 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 153px;
+  padding: 24px;
+}
+
+.main {
+  display: grid;
+  grid-gap: 64px;
+  grid-template-columns:  1fr 350px;
+  padding: 24px;
+}
+
+.h6 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.subscribers-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.subscribers-link {
+  color: var(--light-color);
+}
+
+.subscribers-button {
+  display: flex;
+  color: var(--light-color);
+  height: 14px;
+  width: 14px;
+  margin-left: 4px;
+}
+
+.subscribers-count {
+  color: var(--dark-color);
+  background-color: var(--green-color);
+  padding: 4px 6px;
+}
+

@@ -1,0 +1,42 @@
+:host {
+  display: grid;
+  grid-gap: 48px;
+  grid-template-columns: 322px 1fr;
+  padding: 24px;
+}
+
+.form {
+  padding: 32px;
+  border: 1px solid var(--light-color);
+  background: var(--dark-color);
+
+  &__bottom,
+  &__buttons {
+    display: flex;
+    align-items: center;
+  }
+
+  &__bottom {
+    justify-content: space-between;
+  }
+
+  &__buttons {
+    column-gap: 20px;
+  }
+}
+
+.split-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.label {
+  font-weight: 400;
+  row-gap: 4px;
+  margin-bottom: 24px;
+}
+
+input {
+  padding: 12px 0;
+}

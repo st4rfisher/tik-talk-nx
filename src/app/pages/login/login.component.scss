@@ -15,8 +15,7 @@
 }
 
 .label {
-  display: flex;
-  flex-direction: column;
+  font-weight: 700;
   row-gap: 8px;
   margin-top: 8px;
 }
@@ -27,12 +26,8 @@
 
 .input {
   width: 100%;
-  padding-right: 48px;
-
-  &:internal-autofill-selected {
-    background-color: inherit;
-    outline: none;
-  }
+  padding: 12px 48px 12px 20px;
+  border-radius: 4px;
 }
 
 .button {
