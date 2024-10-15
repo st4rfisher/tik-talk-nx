@@ -18,13 +18,4 @@ export class LayoutComponent {
   constructor(
     private profileService: ProfileService
   ) {}
-
-  ngOnInit(): void {
-    this.profileService.getMyAccount().subscribe(
-      value => {
-        console.log(value)
-      }
-    )
-
-  }
 }
