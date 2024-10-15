@@ -1,6 +1,9 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   padding: 20px 12px;
+  background-color: var(--dark-color);
+  height: 100vh;
 }
 
 .logo {
@@ -10,6 +13,7 @@
 .menu-list {
   display: grid;
   grid-gap: 8px;
+  margin-bottom: 32px;
 }
 
 .menu-button {
@@ -21,9 +25,38 @@
   color: var(--light-color);
   padding: 16px 12px;
   cursor: pointer;
-  
+  border-radius: 4px;
+  width: 100%;
+
   &:hover,
   &:focus-visible {
+    color: var(--primary-color);
     background-color: var(--dark-hover-color);
   }
+}
+
+.medium-text {
+  padding: 0 12px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.to-subscribers-link {
+  display: inline-flex;
+  column-gap: 8px;
+  align-items: center;
+  color: var(--primary-color);
+  padding: 16px 12px;
+  flex-shrink: 0;
+}
+
+.footer {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 32px 1fr 16px;
+  background-color: var(--dark-hover-color);
+  border-radius: 4px;
+  padding: 4px 12px;
+  margin-top: auto;
+  font-weight: 700;
 }
