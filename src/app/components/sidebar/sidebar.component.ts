@@ -29,17 +29,17 @@ export class SidebarComponent {
     {
       label: 'Моя страница',
       icon: 'home',
-      link: ''
+      link: 'profile/me'
     },
     {
       label: 'Чаты',
       icon: 'chat',
-      link: ''
+      link: '/'
     },
     {
       label: 'Поиск',
       icon: 'search',
-      link: ''
+      link: '/'
     }
   ]
 

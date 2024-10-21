@@ -3,10 +3,10 @@
   <ul class="menu-list">
     @for(menuItem of menuItems; track menuItem) {
       <li class="menu-item">
-        <button class="menu-button">
+        <a class="menu-button" [routerLink]="menuItem.link">
           <svg [icon]="menuItem.icon" width="20" height="20"></svg>
-          <span>{{ menuItem.label }}</span>
-        </button>
+          <span class="sub-title">{{ menuItem.label }}</span>
+        </a>
       </li>
     }
   </ul>
@@ -14,7 +14,9 @@
 
 <p class="medium-text">Подписчики</p>
 @for(profile of subscribers$ | async; track profile.id) {
-  <app-subscriber-card [profile]="profile"/>
+  <a [routerLink]="'profile/' + profile.id">
+    <app-subscriber-card [profile]="profile"/>
+  </a>
 }
 
 <a class="to-subscribers-link"
