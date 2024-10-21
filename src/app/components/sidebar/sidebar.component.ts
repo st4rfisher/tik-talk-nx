@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { SvgComponent } from "../../common-ui/svg/svg.component";
+import { IconComponent } from "../../common-ui/icon/icon.component";
 import { SubscriberCardComponent } from "./subscriber-card/subscriber-card.component";
 import { RouterLink } from '@angular/router';
 import { ProfileService } from '@/services/profile.service';
@@ -11,7 +11,7 @@ import { ImageUrlPipe } from '@/helpers/pipes/image-url.pipe';
   selector: 'app-sidebar',
   standalone: true,
   imports: [
-    SvgComponent,
+    IconComponent,
     SubscriberCardComponent,
     RouterLink,
     AsyncPipe,

@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
   styles: ''
 })
 
-export class SvgComponent {
+export class IconComponent {
   @Input() icon = ''
 
   get path() {

@@ -7,7 +7,7 @@ import { switchMap } from 'rxjs';
 import { Profile } from '@/model/profile';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
-import { SvgComponent } from '@/common-ui/svg/svg.component';
+import { IconComponent } from '@/common-ui/icon/icon.component';
 // import { SubscriberItemComponent } from "../../components/sidebar/subscriber-item/subscriber-item.component";
 import { ImageUrlPipe } from '@/helpers/pipes/image-url.pipe';
 import { PostFeedComponent } from "./post-feed/post-feed.component";
@@ -18,7 +18,7 @@ import { PostFeedComponent } from "./post-feed/post-feed.component";
   imports: [
     RouterLink,
     ProfileHeaderComponent,
-    SvgComponent,
+    IconComponent,
     AsyncPipe,
     // SubscriberItemComponent,
     ImageUrlPipe,
