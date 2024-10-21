@@ -1,0 +1,92 @@
+@if(myProfile$ | async; as myProfile ) {
+  <app-profile-header [profile]="myProfile"/>
+  <main class="main">
+    <form class="form" [formGroup]="form">
+      <div class="form__top">
+        <div class="split-area">
+          <label class="label">
+            Имя
+            <input
+              id="firstname"
+              name="firstname"
+              formControlName="firstName"
+              class="input input--border-bottom"
+              type="text"
+              placeholder="Введите имя"
+            >
+          </label>
+          <label class="label">
+            Фамилия
+            <input
+              id="lastname"
+              name="lastname"
+              formControlName="lastName"
+              class="input input--border-bottom"
+              type="text"
+              placeholder="Введите фамилию"
+            >
+          </label>
+        </div>
+        <label class="label">
+          Telegram Username
+          <input
+            id="username"
+            name="username"
+            formControlName="username"
+            class="input input--border-bottom"
+            type="text"
+            placeholder="-"
+          >
+        </label>
+        <label class="label">
+          О себе
+          <textarea
+            id="description"
+            name="description"
+            formControlName="description"
+            class="input input--border-bottom"
+            placeholder="Введите данные"
+            rows="4"
+          >
+          </textarea>
+        </label>
+        <div class="label">
+          Аватар
+          <app-avatar-upload></app-avatar-upload>
+        </div>
+
+        <label class="label">
+          Навыки (стэк)
+          <input
+            id="stack"
+            name="stack"
+            formControlName="stack"
+            class="input input--border-bottom"
+            type="text"
+            placeholder="Введите навыки"
+          >
+        </label>
+      </div>
+      <div class="form__bottom">
+        <div class="form__buttons">
+          <button type="button" class="button button--secondary button--danger">
+            <svg class="icon" icon="trash" height="16" width="16"></svg>
+          </button>
+
+          <button type="button" class="button button--secondary">
+            <svg class="icon" icon="exit" height="16" width="16"></svg>
+          </button>
+        </div>
+        <div class="form__buttons">
+          <button type="button" class="button button--secondary button--danger">
+            Отмена
+          </button>
+
+          <button type="button" class="button button--primary" (click)="onSave()">
+            Сохранить
+          </button>
+        </div>
+      </div>
+    </form>
+  </main>
+}
