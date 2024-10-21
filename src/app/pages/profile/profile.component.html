@@ -1,1 +1,48 @@
-<p>profile works!</p>
+@if(profile$ | async; as profile) {
+  <header class="header">
+    <app-profile-header [profile]="profile"/>
+
+    <a class="button button--primary" [routerLink]="['/settings']">
+      Редактировать
+      <svg icon="settings" width="16" height="16"></svg>
+    </a>
+  </header>
+
+  <main class="main">
+    <div class="left-side">
+      <app-post-feed></app-post-feed>
+    </div>
+    <div class="right-side">
+      <div class="block">
+        <h3 class="h6">
+          Подписчики
+          <span class="subscribers-count">{{ subscribersCount }}</span>
+        </h3>
+
+        <div class="subscribers-container">
+          @for (subscriber of subscribers$ | async; track subscriber.id) {
+            <a class="subscribers-link" [routerLink]="['/profile', subscriber.id]">
+              <img class="avatar" [src]="subscriber.avatarUrl | imageUrl" [alt]="subscriber.username" width="36" height="36">
+            </a>
+          }
+        </div>
+
+        <a class="subscribers-button" [routerLink]="['/search']">
+          <svg icon="plus" height="16" width="16"></svg>
+        </a>
+      </div>
+
+      <div class="block">
+        <h3 class="h6">Навыки</h3>
+        @for (skill of profile.stack; track skill) {
+          <span class="tag">{{ skill }}</span>
+        }
+      </div>
+
+      <div class="block">
+        <h3 class="h6">О себе</h3>
+        <p class="medium-text"> {{ profile.description }}</p>
+      </div>
+    </div>
+  </main>
+}
