@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '@/services/auth.service';
@@ -15,16 +15,13 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent {
+  authService = inject(AuthService)
+  router = inject(Router)
+  isPasswordVisible = signal<boolean>(false)
   form: FormGroup = new FormGroup({
     username: new FormControl<string | null>(null, Validators.required),
     password: new FormControl<string | null>(null, Validators.required)
   })
-  isPasswordVisible = signal<boolean>(false)
-
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) {}
 
   submit() {
     if(this.form.valid) {

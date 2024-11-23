@@ -9,6 +9,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 export const routes: Routes = [
   {
     path: '',
+    canActivate: [accessGuard],
     component: LayoutComponent,
     children: [
       {
@@ -24,7 +25,7 @@ export const routes: Routes = [
         component: SettingsComponent
       },
     ],
-    canActivate: [accessGuard]
+
   },
   {
     path: 'login',
