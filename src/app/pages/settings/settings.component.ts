@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, ViewChild, effect, inject } from '@angular/core';
 import { ProfileHeaderComponent } from '@/components/profile-header/profile-header.component';
 import { ProfileService } from '@/services/profile.service';
 import { toObservable } from '@angular/core/rxjs-interop';
@@ -22,9 +22,11 @@ import { AvatarUploadComponent } from "./avatar-upload/avatar-upload.component";
   styleUrl: './settings.component.scss'
 })
 export class SettingsComponent {
+  @ViewChild(AvatarUploadComponent) avatarUploader!: AvatarUploadComponent
   profileService = inject(ProfileService)
   myProfile$ = toObservable(this.profileService.myProfile)
   formBuilder = inject(FormBuilder)
+
   form = this.formBuilder.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
@@ -47,11 +49,18 @@ export class SettingsComponent {
     this.form.markAllAsTouched()
     this.form.updateValueAndValidity()
 
+    if(this.form.invalid) return
+
+    if(this.avatarUploader.avatar) {
+      firstValueFrom(this.profileService.uploadAvatar(this.avatarUploader.avatar))
+      console.log(this.avatarUploader.avatar)
+    }
     //@ts-ignore
     firstValueFrom(this.profileService.patchProfileData({
       ...this.form.value,
       stack: this.splitStack(this.form.value.stack)
     }))
+
   }
 
   splitStack(stack: string | null | string[] | undefined) {
