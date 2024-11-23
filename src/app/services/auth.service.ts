@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -12,6 +12,9 @@ import { TokenResponse } from '@/model/auth';
 })
 
 export class AuthService {
+  http = inject(HttpClient)
+  cookieService = inject(CookieService)
+  router = inject(Router)
   baseApiUrl = "https://icherniakov.ru/yt-course/auth/"
   token: string | null = null
   refreshToken: string | null = null
@@ -19,18 +22,11 @@ export class AuthService {
   get isAuth() {
     if(!this.token) {
       this.token = this.cookieService.get('token')
-      this.refreshToken = this.cookieService.get('refreshTokentoken')
+      this.refreshToken = this.cookieService.get('refreshToken')
     }
 
     return !!this.token
   }
-
-  constructor(
-    private http: HttpClient,
-    private cookieService: CookieService,
-    private router: Router,
-    // private errorService: ErrorService
-  ) {}
 
   login(payload: {username: string, password: string}) {
     const formData: FormData = new FormData()
@@ -51,7 +47,9 @@ export class AuthService {
   }
 
   refreshAuthToken() {
-    return this.http.post<TokenResponse>(`${this.baseApiUrl}refresh`, { refresh_token: this.refreshToken })
+    return this.http.post<TokenResponse>(
+      `${this.baseApiUrl}refresh`,
+      { refresh_token: this.refreshToken })
       .pipe(
         tap(response => this.saveTokens(response)),
         catchError(error => {
@@ -63,7 +61,7 @@ export class AuthService {
 
   saveTokens(response: TokenResponse) {
     this.token = response.access_token
-    this.refreshToken = response.access_token
+    this.refreshToken = response.refresh_token
     this.cookieService.set('token', this.token)
     this.cookieService.set('refreshToken', this.refreshToken)
   }
