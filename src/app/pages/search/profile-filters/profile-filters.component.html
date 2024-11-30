@@ -1,0 +1,35 @@
+<form class="form" [formGroup]="searchForm">
+  <label class="label">
+    Имя
+    <input
+      id="firstname"
+      name="firstname"
+      formControlName="firstName"
+      class="input input--border-bottom"
+      type="text"
+      placeholder="Введите имя"
+    >
+  </label>
+  <label class="label">
+    Фамилия
+    <input
+      id="lastname"
+      name="lastname"
+      formControlName="lastname"
+      class="input input--border-bottom"
+      type="text"
+      placeholder="Введите фамилию"
+    >
+  </label>
+  <label class="label">
+    Навыки
+    <input
+      id="stack"
+      name="stack"
+      formControlName="stack"
+      class="input input--border-bottom"
+      type="text"
+      placeholder="Введите навыки"
+    >
+  </label>
+</form>

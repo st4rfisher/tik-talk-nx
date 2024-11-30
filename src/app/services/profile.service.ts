@@ -11,6 +11,7 @@ import { map, tap } from 'rxjs';
 export class ProfileService {
   baseApiUrl = "https://icherniakov.ru/yt-course"
   myProfile = signal<Profile | null>(null)
+  filteredProfiles = signal<Profile[]>([])
 
   constructor(private http: HttpClient) {}
 
@@ -50,5 +51,12 @@ export class ProfileService {
 
     formData.append('image', file)
     return this.http.post<Profile>(`${this.baseApiUrl}/account/upload_image`, formData)
+  }
+
+  filterProfiles(params: Record<string, any>) {
+    return this.http.get<Pageable<Profile>>(`${this.baseApiUrl}/account/accounts`, { params })
+      .pipe(
+        tap(responce => this.filteredProfiles.set(responce.items))
+      )
   }
 }
