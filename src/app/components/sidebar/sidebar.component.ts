@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { IconComponent } from "../../common-ui/icon/icon.component";
 import { SubscriberCardComponent } from "./subscriber-card/subscriber-card.component";
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ProfileService } from '@/services/profile.service';
 import { firstValueFrom } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
@@ -12,6 +12,7 @@ import { ImageUrlPipe } from '@/helpers/pipes/image-url.pipe';
   standalone: true,
   imports: [
     IconComponent,
+    RouterLinkActive,
     SubscriberCardComponent,
     RouterLink,
     AsyncPipe,
@@ -34,12 +35,12 @@ export class SidebarComponent {
     {
       label: 'Чаты',
       icon: 'chat',
-      link: '/'
+      link: '/chats'
     },
     {
       label: 'Поиск',
       icon: 'search',
-      link: '/'
+      link: '/search'
     }
   ]
 

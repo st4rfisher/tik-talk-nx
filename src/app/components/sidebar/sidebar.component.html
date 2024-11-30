@@ -3,7 +3,10 @@
   <ul class="menu-list">
     @for(menuItem of menuItems; track menuItem) {
       <li class="menu-item">
-        <a class="menu-button" [routerLink]="menuItem.link">
+        <a class="menu-button"
+          [routerLink]="menuItem.link"
+          routerLinkActive="active"
+        >
           <svg [icon]="menuItem.icon" width="20" height="20"></svg>
           <span class="sub-title">{{ menuItem.label }}</span>
         </a>

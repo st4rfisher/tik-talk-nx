@@ -29,7 +29,8 @@
   width: 100%;
 
   &:hover,
-  &:focus-visible {
+  &:focus-visible,
+  &.active {
     color: var(--primary-color);
     background-color: var(--dark-hover-color);
   }
