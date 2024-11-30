@@ -14,15 +14,20 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: SearchComponent
+        redirectTo: 'profile/me',
+        pathMatch: 'full'
       },
-      {
+      { 
         path: 'profile/:id',
         component: ProfileComponent
       },
       {
         path: 'settings',
         component: SettingsComponent
+      },
+      {
+        path: 'search',
+        component: SearchComponent
       },
     ],
 
