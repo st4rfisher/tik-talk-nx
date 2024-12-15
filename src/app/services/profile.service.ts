@@ -3,35 +3,35 @@ import { Injectable, signal } from '@angular/core';
 import { Profile } from '@/model/profile';
 import { Pageable } from '@/model/pageable';
 import { map, tap } from 'rxjs';
+import { BASE_API_URL } from '@/global/variables';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProfileService {
-  baseApiUrl = "https://icherniakov.ru/yt-course"
   myProfile = signal<Profile | null>(null)
   filteredProfiles = signal<Profile[]>([])
 
   constructor(private http: HttpClient) {}
 
   getSubscribersShortList(limit: number = 3) {
-    return this.http.get<Pageable<Profile>>(`${this.baseApiUrl}/account/subscribers/`)
+    return this.http.get<Pageable<Profile>>(`${BASE_API_URL}/account/subscribers/`)
       .pipe(
         map(response => response.items.slice(0, limit))
       )
   }
 
   getTestAccounts() {
-    return this.http.get<Profile[]>(`${this.baseApiUrl}/account/test_accounts`)
+    return this.http.get<Profile[]>(`${BASE_API_URL}/account/test_accounts`)
   }
 
   getAccount(id: string) {
-    return this.http.get<Profile>(`${this.baseApiUrl}/account/${id}`)
+    return this.http.get<Profile>(`${BASE_API_URL}/account/${id}`)
   }
 
   getMyAccount() {
-    return this.http.get<Profile>(`${this.baseApiUrl}/account/me`)
+    return this.http.get<Profile>(`${BASE_API_URL}/account/me`)
       .pipe(
         tap(
           response => {
@@ -43,18 +43,18 @@ export class ProfileService {
   }
 
   patchProfileData(data: Partial<Profile>) {
-    return this.http.patch<Profile>(`${this.baseApiUrl}/account/me`, data)
+    return this.http.patch<Profile>(`${BASE_API_URL}/account/me`, data)
   }
 
   uploadAvatar(file: File) {
     const formData = new FormData()
 
     formData.append('image', file)
-    return this.http.post<Profile>(`${this.baseApiUrl}/account/upload_image`, formData)
+    return this.http.post<Profile>(`${BASE_API_URL}/account/upload_image`, formData)
   }
 
   filterProfiles(params: Record<string, any>) {
-    return this.http.get<Pageable<Profile>>(`${this.baseApiUrl}/account/accounts`, { params })
+    return this.http.get<Pageable<Profile>>(`${BASE_API_URL}/account/accounts`, { params })
       .pipe(
         tap(responce => this.filteredProfiles.set(responce.items))
       )

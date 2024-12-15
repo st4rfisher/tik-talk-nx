@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { BASE_API_URL } from '@/global/variables';
 
 @Pipe({
   name: 'imageUrl',
@@ -8,6 +9,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ImageUrlPipe implements PipeTransform {
   transform(value: string | null): string | null {
     if(!value) return null
-    return `https://icherniakov.ru/yt-course/${value}`;
+    return `${BASE_API_URL}/${value}`;
   }
 }

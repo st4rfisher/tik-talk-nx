@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { IconComponent } from '@/common-ui/icon/icon.component';
 import { DragAndDropDirective } from '@/common-ui/directives/drag-and-drop.directive';
 import { ProfileService } from '@/services/profile.service';
+import { BASE_API_URL } from '@/global/variables';
 
 @Component({
   selector: 'app-avatar-upload',
@@ -43,12 +44,12 @@ export class AvatarUploadComponent {
   }
 
   setPreviewOnLoad() {
-    
+
   }
 
   ngOnInit(): void {
     if(this.profileService.myProfile()?.avatarUrl) {
-      this.preview.set(`https://icherniakov.ru/yt-course/${this.profileService.myProfile()?.avatarUrl}`)
+      this.preview.set(`${BASE_API_URL}/${this.profileService.myProfile()?.avatarUrl}`)
     }
   }
 }
