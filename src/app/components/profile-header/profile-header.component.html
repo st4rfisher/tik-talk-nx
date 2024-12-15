@@ -1,9 +1,5 @@
 @if(profile(); as profile) {
-  @if (profile.avatarUrl) {
-    <img class="avatar" width="112" height="112" [src]="profile.avatarUrl | imageUrl" alt="">
-  } @else {
-  <img src="/assets/images/default-avatar.svg" alt="">
-  }
+  <app-avatar [size]="112" [url]="profile.avatarUrl"/>
 
   <div class="username">
     <p class="h4">{{ profile.firstName }} {{ profile.lastName }}</p>
