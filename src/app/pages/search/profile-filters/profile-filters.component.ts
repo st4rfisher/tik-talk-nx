@@ -37,6 +37,6 @@ export class ProfileFiltersComponent {
   }
 
   ngOnDestroy(): void {
-    this.searchFormSubscription.unsubscribe()
+    // this.searchFormSubscription.unsubscribe()
   }
 }
