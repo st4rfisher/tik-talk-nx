@@ -3,7 +3,7 @@
   align-items: center;
   padding: 16px;
   background-color: var(--dark-color);
-  border: 1px solid var(--light-color);
+  border: var(--light-border);
   grid-template-columns: 32px 1fr 44px;
   grid-gap: 12px;
 }

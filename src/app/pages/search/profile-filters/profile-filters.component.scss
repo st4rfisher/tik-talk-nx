@@ -2,7 +2,7 @@
   display: grid;
   padding:  16px 20px;
   background: var(--dark-color);
-  border: 1px solid var(--light-color);
+  border: var(--light-border);
   grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
   grid-gap: 40px;
 }

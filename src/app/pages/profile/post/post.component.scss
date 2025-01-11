@@ -1,6 +1,6 @@
 :host {
   background-color: var(--dark-color);
-  border: 1px solid var(--light-color);
+  border: var(--light-border);
   padding: 20px;
   display: grid;
   grid-template-columns: 32px 1fr;
