@@ -1,5 +1,1 @@
-@if (url(); as url) {
-  <img class="avatar" [width]="size" [height]="size" [src]="url | imageUrl">
-} @else {
-  <img class="avatar" [width]="size" [height]="size" src="/assets/images/default-avatar.svg">
-}
+<img class="avatar" [width]="size" [height]="size" [src]="url() ? (url() | imageUrl) : '/assets/images/default-avatar.svg'">
