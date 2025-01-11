@@ -18,6 +18,8 @@
   }
 
   .message-text {
+    color: var(--dark-color);
+    background-color: var(--mine-message-color);
     align-self: end;
     mask: linear-gradient(#000 0 0), linear-gradient(-135deg, #000 50%, #0000 0) border-box 100% 100% / 200% 200% no-repeat;
     mask-composite: exclude;
@@ -27,11 +29,11 @@
 
 .message-text {
   padding: 8px 16px;
-  background-color: var(--message-color);
   font-weight: 500;
-  color: var(--light-color);
   width: min-content;
 
+  color: var(--light-color);
+  background-color: var(--companion-message-color);
   align-self: start;
   mask: linear-gradient(#000 0 0), linear-gradient(-229deg, #000 50%, rgba(0, 0, 0, 0) 0) border-box 100% 100% / 200% 200% no-repeat;
   mask-composite: exclude;

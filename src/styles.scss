@@ -6,13 +6,15 @@
   --light-color: #ffffff;
   --dark-color: #000000;
   --grey-color: #5F646D;
+  --dark-grey: #404040;
   --border: #ffffff;
   --primary-color: #AE7AFF;
   --dark-hover-color: #161616;
   --green-color: #98E9AB;
   --danger-color: #E99898;
-  --message-color: #404040;
-  
+  --companion-message-color: var(--dark-grey);
+  --mine-message-color: var(--primary-color);
+
   --light-border: 1px solid var(--light-color);
   --dark-border: 1px solid var(--light-color);
 }
