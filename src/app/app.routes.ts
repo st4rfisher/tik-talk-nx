@@ -5,6 +5,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { accessGuard } from './guards/access.guard';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { ChatsComponent } from './pages/chats/chats.component';
+import { chatsRoutes } from './pages/chats/chats.routes';
 
 export const routes: Routes = [
   {
@@ -17,7 +19,7 @@ export const routes: Routes = [
         redirectTo: 'profile/me',
         pathMatch: 'full'
       },
-      { 
+      {
         path: 'profile/:id',
         component: ProfileComponent
       },
@@ -28,6 +30,10 @@ export const routes: Routes = [
       {
         path: 'search',
         component: SearchComponent
+      },
+      {
+        path: 'chats',
+        loadChildren: () => chatsRoutes
       },
     ],
 

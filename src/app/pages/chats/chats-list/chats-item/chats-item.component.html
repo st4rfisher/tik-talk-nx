@@ -1,0 +1,15 @@
+@if(chat(); as chat) {
+  <app-avatar
+    [size]="32"
+    [url]="chat.userFrom.avatarUrl"
+  />
+  <div class="message">
+    <span class="medium-text">
+      {{ chat.userFrom.firstName }} {{ chat.userFrom.lastName }}
+    </span>
+    <span class="medium-text">
+      {{ chat.message ?? '...' }}
+    </span>
+  </div>
+}
+
