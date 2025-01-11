@@ -56,7 +56,7 @@ export class ProfileService {
   filterProfiles(params: Record<string, any>) {
     return this.http.get<Pageable<Profile>>(`${BASE_API_URL}/account/accounts`, { params })
       .pipe(
-        tap(responce => this.filteredProfiles.set(responce.items))
+        tap(response => this.filteredProfiles.set(response.items))
       )
   }
 }
