@@ -5,6 +5,8 @@ import { NgIf } from '@angular/common';
 import { PostService } from '@/services/post.service';
 import { FormsModule } from "@angular/forms";
 import { firstValueFrom } from 'rxjs';
+import { IconComponent } from '@/common-ui/icon/icon.component';
+import { MessageInputComponent } from "../../../common-ui/message-input/message-input.component";
 
 @Component({
   selector: 'app-post-input',
@@ -12,8 +14,10 @@ import { firstValueFrom } from 'rxjs';
   imports: [
     AvatarComponent,
     NgIf,
-    FormsModule
-  ],
+    FormsModule,
+    IconComponent,
+    MessageInputComponent
+],
   templateUrl: './post-input.component.html',
   styleUrl: './post-input.component.scss'
 })
