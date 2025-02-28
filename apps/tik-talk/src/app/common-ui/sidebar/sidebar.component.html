@@ -1,0 +1,62 @@
+<img
+  class="logo"
+  src="/assets/images/logo-small.svg"
+  alt="Лого"
+  width="61"
+  height="74"
+/>
+<nav>
+  <ul class="menu-list">
+    @for(menuItem of menuItems; track menuItem) {
+    <li class="menu-item">
+      <a
+        class="menu-button"
+        [routerLink]="menuItem.link"
+        routerLinkActive="active"
+      >
+        <svg [icon]="menuItem.icon" width="20" height="20"></svg>
+        <span class="sub-title">{{ menuItem.label }}</span>
+      </a>
+    </li>
+    }
+  </ul>
+</nav>
+
+<p class="medium-text">Подписчики</p>
+@for(profile of subscribers$ | async; track profile.id) {
+<a [routerLink]="'profile/' + profile.id">
+  <app-subscriber-card [profile]="profile" />
+</a>
+}
+
+<a class="to-subscribers-link" [routerLink]="['/subscribers']">
+  Все подписчики
+
+  <svg icon="arrow" width="20" height="20"></svg>
+</a>
+
+<footer class="footer">
+  @if (myProfile(); as myProfile) { @if(myProfile.avatarUrl) {
+  <img
+    class="avatar"
+    [src]="myProfile.avatarUrl | imageUrl"
+    alt=""
+    width="32"
+    height="32"
+  />
+  } @else {
+  <img
+    class="avatar"
+    src="/assets/images/default-avatar.svg"
+    alt=""
+    width="32"
+    height="32"
+  />
+  }
+
+  <span class="medium-text">{{ myProfile.username }}</span>
+  <a class="button button--action" [routerLink]="['/settings']">
+    <svg icon="settings" width="20" height="20"></svg>
+  </a>
+  }
+</footer>

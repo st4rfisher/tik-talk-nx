@@ -1,0 +1,23 @@
+:host {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  padding: 24px 20px;
+  border-bottom: var(--light-border);
+  grid-gap: 16px;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible,
+  &.active {
+    background-color: var(--dark-hover-color);
+  }
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+  color: var(--light-color);
+}

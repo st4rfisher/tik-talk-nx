@@ -1,0 +1,34 @@
+@if (post(); as post) {
+<app-avatar [size]="32" [url]="post.author.avatarUrl" />
+
+<main class="post-body">
+  <div class="post-header">
+    <span class="sub-title">
+      {{ post.author.firstName }} {{ post.author.lastName }}</span
+    >
+    <span class="label"> {{ post.createdAt | date : 'HH:mm dd.MM.YY' }}</span>
+  </div>
+  <p class="medium-text">{{ post.content }}</p>
+
+  <div class="post-footer">
+    <p class="comment-amount">
+      <svg icon="comment" width="16" height="16"></svg>
+      <span class="label">{{ comments().length }}</span>
+    </p>
+  </div>
+
+  <div class="post-comments">
+    @for (comment of comments(); track comment.id) {
+    <app-comment [comment]="comment" />
+    }
+  </div>
+  <!-- <app-message-input
+      (created)="onCreated()"
+    /> -->
+  <app-post-input
+    (created)="onCreated()"
+    [postId]="post.id"
+    [isCommentInput]="true"
+  />
+</main>
+}
