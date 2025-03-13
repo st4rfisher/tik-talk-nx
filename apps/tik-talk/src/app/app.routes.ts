@@ -1,12 +1,8 @@
 import { Routes } from '@angular/router';
-import { SearchComponent } from './pages/search/search.component';
-import { LoginComponent } from './pages/login/login.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { LayoutComponent } from './common-ui/layout/layout.component';
-import { accessGuard } from '@tt/auth';
-import { SettingsComponent } from './pages/settings/settings.component';
-import { ChatsComponent } from './pages/chats/chats.component';
-import { chatsRoutes } from './pages/chats/chats.routes';
+import { accessGuard, LoginPageComponent } from '@tt/auth';
+import { chatsRoutes } from '@tt/chats';
+import { LayoutComponent } from '@tt/layout';
+import { ProfilePageComponent, SettingsPageComponent, SearchPageComponent } from '@tt/profile';
 
 export const routes: Routes = [
   {
@@ -21,15 +17,15 @@ export const routes: Routes = [
       },
       {
         path: 'profile/:id',
-        component: ProfileComponent,
+        component: ProfilePageComponent,
       },
       {
         path: 'settings',
-        component: SettingsComponent,
+        component: SettingsPageComponent,
       },
       {
         path: 'search',
-        component: SearchComponent,
+        component: SearchPageComponent,
       },
       {
         path: 'chats',
@@ -39,6 +35,6 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent,
+    component: LoginPageComponent,
   },
 ];

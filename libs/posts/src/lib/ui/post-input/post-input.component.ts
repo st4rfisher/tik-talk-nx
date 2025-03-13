@@ -14,6 +14,7 @@ import { PostService } from '../../data';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { IconComponent } from '@tt/common-ui';
+import { StoreService } from '@tt/shared';
 // import { MessageInputComponent } from '../../../common-ui/message-input/message-input.component';
 
 @Component({
@@ -32,12 +33,12 @@ import { IconComponent } from '@tt/common-ui';
 export class PostInputComponent {
   //PostInput имеет 2 вида - PostInput для создания поста
   //и PostInput внутри уже созданного поста для комментариев
+  postService = inject(PostService);
+  renderer = inject(Renderer2); //прослойка для взаимодействия с элементами на разных платформах
 
   isCommentInput = input<boolean>(false);
   postId = input<number>(0);
-  renderer = inject(Renderer2); //прослойка для взаимодействия с элементами на разных платформах
-  myProfile = inject(ProfileService).myProfile;
-  postService = inject(PostService);
+  myProfile = inject(StoreService).myProfile;
   text = '';
 
   @Output() created = new EventEmitter();

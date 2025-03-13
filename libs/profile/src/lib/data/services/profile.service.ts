@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
-import { Profile } from '../interfaces/profile.interface';
-import { Pageable } from '@tt/shared';
+import { Injectable, inject, signal } from '@angular/core';
+import { Profile } from '../../../../../interfaces/src/lib/profile/profile.interface';
+import { Pageable, StoreService } from '@tt/shared';
 import { map, tap } from 'rxjs';
 import { BASE_API_URL } from 'global/variables';
 
@@ -9,10 +9,10 @@ import { BASE_API_URL } from 'global/variables';
   providedIn: 'root',
 })
 export class ProfileService {
+  http = inject(HttpClient)
+  #storeService = inject(StoreService)
   myProfile = signal<Profile | null>(null);
   filteredProfiles = signal<Profile[]>([]);
-
-  constructor(private http: HttpClient) {}
 
   getSubscribersShortList(limit: number = 3) {
     return this.http.get<Pageable<Profile>>(`${BASE_API_URL}/account/subscribers/`)
@@ -33,6 +33,7 @@ export class ProfileService {
         tap((response) => {
           this.myProfile.set(response);
           console.log(this.myProfile());
+          this.#storeService.myProfile.set(response)
         })
       );
   }
