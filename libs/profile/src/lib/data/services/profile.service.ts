@@ -12,7 +12,6 @@ export class ProfileService {
   http = inject(HttpClient)
   #storeService = inject(StoreService)
   myProfile = signal<Profile | null>(null);
-  filteredProfiles = signal<Profile[]>([]);
 
   getSubscribersShortList(limit: number = 3) {
     return this.http.get<Pageable<Profile>>(`${BASE_API_URL}/account/subscribers/`)
@@ -54,6 +53,5 @@ export class ProfileService {
 
   filterProfiles(params: Record<string, any>) {
     return this.http.get<Pageable<Profile>>(`${BASE_API_URL}/account/accounts`, { params })
-      .pipe(tap((response) => this.filteredProfiles.set(response.items)));
   }
 }
