@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ProfileCardComponent } from '../../ui';
 import { ProfileFiltersComponent } from '../profile-filters/profile-filters.component';
-import { ProfileService, selectFilteredProfiles } from '../../data';
+import { selectFilteredProfiles } from '../../data';
 import { Store } from '@ngrx/store';
 
 @Component({
