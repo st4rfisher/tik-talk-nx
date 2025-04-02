@@ -12,7 +12,6 @@ import { Store } from '@ngrx/store';
   styleUrl: './profile-filters.component.scss',
 })
 export class ProfileFiltersComponent implements OnDestroy {
-  profileService = inject(ProfileService)
   store = inject(Store)
   formBuilder = inject(FormBuilder)
   searchForm = this.formBuilder.group({
