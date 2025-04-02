@@ -11,6 +11,7 @@ import {
   profileFeature,
   ProfileEffects
 } from '@tt/profile';
+import { postsFeature, PostsEffects } from '@tt/posts';
 
 export const routes: Routes = [
   {
@@ -26,6 +27,10 @@ export const routes: Routes = [
       {
         path: 'profile/:id',
         component: ProfilePageComponent,
+        providers: [
+          provideState(postsFeature),
+          provideEffects(PostsEffects)
+        ]
       },
       {
         path: 'settings',
