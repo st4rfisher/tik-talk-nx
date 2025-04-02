@@ -30,7 +30,6 @@ export class PostFeedComponent {
   }
 
   constructor() {
-    // console.log(this.posts())
     this.store.dispatch(postsActions.fetchPosts())
   }
 
