@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { PostInputComponent } from '../../ui/post-input/post-input.component';
 import { PostComponent } from '../post/post.component';
-import { PostService } from '../../data';
-import { firstValueFrom } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { postsActions, selectPosts } from '../../data/store';
 
 @Component({
   selector: 'app-post-feed',
@@ -17,20 +17,21 @@ import { firstValueFrom } from 'rxjs';
   templateUrl: './post-feed.component.html',
   styleUrl: './post-feed.component.scss',
 })
+
 export class PostFeedComponent {
-  postService = inject(PostService);
-  posts = this.postService.posts;
+  store = inject(Store)
+  posts = this.store.selectSignal(selectPosts);
   hostElement = inject(ElementRef);
   renderer = inject(Renderer2); //прослойка для взаимодействия с элементами на разных платформах
 
   @HostListener('window:resize')
   onWindowResize() {
     this.resizeFeed();
-    console.log(1);
   }
 
   constructor() {
-    firstValueFrom(this.postService.fetchPosts());
+    // console.log(this.posts())
+    this.store.dispatch(postsActions.fetchPosts())
   }
 
   ngAfterViewInit(): void {
