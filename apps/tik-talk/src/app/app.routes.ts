@@ -12,6 +12,7 @@ import {
   ProfileEffects
 } from '@tt/profile';
 import { postsFeature, PostsEffects } from '@tt/posts';
+import { chatsFeature, ChatsEffects } from '@tt/chats';
 
 export const routes: Routes = [
   {
@@ -47,6 +48,10 @@ export const routes: Routes = [
       {
         path: 'chats',
         loadChildren: () => chatsRoutes,
+        providers: [
+          provideState(chatsFeature),
+          provideEffects(ChatsEffects)
+        ]
       },
     ],
   },
