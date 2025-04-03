@@ -11,10 +11,10 @@
   </label>
 </div>
 @for(chat of chats$ | async; track chat.id) {
-<button
-  chats-item
-  [chat]="chat"
-  [routerLink]="[chat.id]"
-  routerLinkActive="active"
-></button>
+  <button
+    chats-item
+    [chat]="chat"
+    [routerLink]="[chat.id]"
+    routerLinkActive="active"
+  ></button>
 }

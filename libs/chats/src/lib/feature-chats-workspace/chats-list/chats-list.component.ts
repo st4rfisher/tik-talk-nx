@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { ChatsItemComponent } from '../chats-item/chats-item.component';
-import { ChatsService } from '@tt/chats';
+import { chatsActions, selectChats } from '@tt/chats';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { map, startWith, switchMap } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-chats-list',
@@ -20,9 +21,11 @@ import { map, startWith, switchMap } from 'rxjs';
   templateUrl: './chats-list.component.html',
   styleUrl: './chats-list.component.scss',
 })
+
 export class ChatsListComponent {
-  chatsService = inject(ChatsService);
-  chats$ = this.chatsService.getMyChats().pipe(
+  store = inject(Store)
+  filterChatsControl = new FormControl('');
+  chats$ = this.store.select(selectChats).pipe(
     switchMap((chats) => {
       return this.filterChatsControl.valueChanges.pipe(
         startWith(''),
@@ -36,5 +39,8 @@ export class ChatsListComponent {
       );
     })
   );
-  filterChatsControl = new FormControl('');
+
+  constructor() {
+    this.store.dispatch(chatsActions.fetchMyChats())
+  }
 }
