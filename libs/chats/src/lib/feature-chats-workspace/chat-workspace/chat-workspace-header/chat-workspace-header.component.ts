@@ -10,5 +10,5 @@ import { AvatarComponent } from '@tt/common-ui';
   styleUrl: './chat-workspace-header.component.scss',
 })
 export class ChatWorkspaceHeaderComponent {
-  profile = input.required<Profile>();
+  profile = input.required<Profile | undefined>();
 }

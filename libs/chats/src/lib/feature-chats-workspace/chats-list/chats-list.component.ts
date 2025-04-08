@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ChatsItemComponent } from '../chats-item/chats-item.component';
-import { chatsActions, selectChats } from '@tt/chats';
+import { chatsQueryActions, selectChats } from '@tt/chats';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormControl } from '@angular/forms';
@@ -30,7 +30,7 @@ export class ChatsListComponent {
       return this.filterChatsControl.valueChanges.pipe(
         startWith(''),
         map((inputValue) => {
-          return chats.filter((chat) => {
+          return chats?.filter((chat) => {
             return `${chat.userFrom.lastName} ${chat.userFrom.firstName}`
               .toLowerCase()
               .includes(inputValue?.toLowerCase() as string);
@@ -41,6 +41,6 @@ export class ChatsListComponent {
   );
 
   constructor() {
-    this.store.dispatch(chatsActions.fetchMyChats())
+    this.store.dispatch(chatsQueryActions.fetchMyChats())
   }
 }
