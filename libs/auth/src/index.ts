@@ -1,10 +1,10 @@
-import { accessGuard } from "./lib/auth/access.guard"
-import { authTokenInterceptor } from "./lib/auth/auth.interceptor"
-import { AuthService } from "./lib/auth/auth.service"
-
+// import { accessGuard } from "./lib/data/services/access.guard"
+// import { authTokenInterceptor } from "./lib/data/services/auth.interceptor"
+// import { AuthService } from "./lib/data/services/auth.service"
+export * from './lib/data'
 export * from './lib/feature-login'
-export {
-  accessGuard,
-  authTokenInterceptor,
-  AuthService
-}
+// export {
+//   accessGuard,
+//   authTokenInterceptor,
+//   AuthService
+// }

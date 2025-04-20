@@ -13,6 +13,7 @@ import {
 } from '@tt/profile';
 import { postsFeature, PostsEffects } from '@tt/posts';
 import { chatsFeature, ChatsEffects } from '@tt/chats';
+import { loginFeature, LoginEffects } from '@tt/auth';
 
 export const routes: Routes = [
   {
@@ -54,9 +55,17 @@ export const routes: Routes = [
         ]
       },
     ],
+    providers: [
+      provideState(loginFeature),
+      provideEffects(LoginEffects)
+    ]
   },
   {
     path: 'login',
     component: LoginPageComponent,
+    providers: [
+      provideState(loginFeature),
+      provideEffects(LoginEffects)
+    ]
   },
 ];

@@ -4,7 +4,7 @@ import { CanActivateFn, Router } from '@angular/router';
 
 export const accessGuard: CanActivateFn = () => {
   const isLoggedIn: boolean = inject(AuthService).isAuth;
-
+  // if (isLoggedIn) return true;
   if (isLoggedIn) return true;
   return inject(Router).createUrlTree(['/login']);
 };
