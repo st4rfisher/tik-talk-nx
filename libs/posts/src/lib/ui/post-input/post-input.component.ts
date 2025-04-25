@@ -8,13 +8,13 @@ import {
   input,
 } from '@angular/core';
 import { AvatarComponent } from '@tt/common-ui';
-import { ProfileService } from '@tt/profile';
+import { ProfileService, selectMyProfile } from '@tt/profile';
 import { NgIf } from '@angular/common';
 import { PostService } from '../../data';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { IconComponent } from '@tt/common-ui';
-import { StoreService } from '@tt/shared';
+import { Store } from '@ngrx/store';
 // import { MessageInputComponent } from '../../../common-ui/message-input/message-input.component';
 
 @Component({
@@ -33,12 +33,13 @@ import { StoreService } from '@tt/shared';
 export class PostInputComponent {
   //PostInput имеет 2 вида - PostInput для создания поста
   //и PostInput внутри уже созданного поста для комментариев
+  store = inject(Store)
   postService = inject(PostService);
   renderer = inject(Renderer2); //прослойка для взаимодействия с элементами на разных платформах
 
   isCommentInput = input<boolean>(false);
   postId = input<number>(0);
-  myProfile = inject(StoreService).myProfile;
+  myProfile = this.store.selectSignal(selectMyProfile)
   text = '';
 
   @Output() created = new EventEmitter();
