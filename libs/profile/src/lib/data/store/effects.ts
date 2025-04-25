@@ -12,13 +12,74 @@ export class ProfileEffects {
   profileService = inject(ProfileService)
   actions$ = inject(Actions)
 
-  filterProfiles = createEffect(() => {
+  filterProfilesEffect = createEffect(() => {
     return this.actions$.pipe(
       ofType(profileActions.filterEvents),
       switchMap(({filters}) => {
         return this.profileService.filterProfiles(filters)
       }),
       map(response => profileActions.profilesLoaded({profiles: response.items}))
+    )
+  })
+
+  getCurrentProfileEffect = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(profileActions.getCurrentProfile),
+      switchMap(({id}) => {
+        console.log(id)
+        return this.profileService.getAccount(id)
+      }),
+      map(profile => profileActions.currentProfileLoaded({profile: profile}))
+    )
+  })
+
+  getMyProfileEffect = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(profileActions.getMyProfile),
+      switchMap(() => {
+        return this.profileService.getMyAccount()
+      }),
+      map(myAccount => profileActions.myProfileLoaded({profile: myAccount}))
+    )
+  })
+
+  getMySubscribersShortListEffect = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(profileActions.getMySubscribersShortList),
+      switchMap(() => {
+        return this.profileService.getSubscribersShortList()
+      }),
+      map(subscriberAccounts => profileActions.mySubscribersShortListLoaded({profiles: subscriberAccounts}))
+    )
+  })
+
+  getMyProfileSubscribersListEffect = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(profileActions.getMyProfileSubscribersList),
+      switchMap(({limit}) => {
+        return this.profileService.getSubscribersShortList(limit)
+      }),
+      map(subscriberAccounts => profileActions.myProfileSubscribersListLoaded({profiles: subscriberAccounts}))
+    )
+  })
+
+  uploadAvatarEffect = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(profileActions.uploadAvatar),
+      switchMap(({avatar}) => {
+        return  this.profileService.uploadAvatar(avatar)
+      }),
+      map(profile => profileActions.avatarUploaded({profile: profile}))
+    )
+  })
+
+  patchProfileDataEffect = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(profileActions.patchProfileData),
+      switchMap(({data}) => {
+        return  this.profileService.patchProfileData(data)
+      }),
+      map(profile => profileActions.profileDataPatched({profile: profile}))
     )
   })
 }
