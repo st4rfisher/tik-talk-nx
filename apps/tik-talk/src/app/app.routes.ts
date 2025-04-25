@@ -24,18 +24,29 @@ export const routes: Routes = [
         path: '',
         redirectTo: 'profile/me',
         pathMatch: 'full',
+        providers: [
+          provideState(profileFeature),
+          provideEffects(ProfileEffects)
+        ]
       },
       {
         path: 'profile/:id',
         component: ProfilePageComponent,
         providers: [
+          provideState(profileFeature),
           provideState(postsFeature),
-          provideEffects(PostsEffects)
+
+          provideEffects(ProfileEffects),
+          provideEffects(PostsEffects),
         ]
       },
       {
         path: 'settings',
         component: SettingsPageComponent,
+        providers: [
+          provideState(profileFeature),
+          provideEffects(ProfileEffects),
+        ]
       },
       {
         path: 'search',
