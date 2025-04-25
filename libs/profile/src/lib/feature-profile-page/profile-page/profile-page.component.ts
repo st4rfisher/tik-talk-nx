@@ -1,13 +1,14 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ProfileHeaderComponent } from '../../ui';
-import { ProfileService } from '../../data';
+import { profileActions, selectCurrentProfile, selectMyProfile, selectMyProfileSubscribersList } from '../../data';
 import { ActivatedRoute } from '@angular/router';
-import { firstValueFrom, switchMap } from 'rxjs';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { map, switchMap } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { IconComponent, ImageUrlPipe } from '@tt/common-ui';
 import { PostFeedComponent } from '@tt/posts';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-profile',
@@ -17,29 +18,32 @@ import { PostFeedComponent } from '@tt/posts';
     ProfileHeaderComponent,
     IconComponent,
     AsyncPipe,
-    // SubscriberItemComponent,
     ImageUrlPipe,
     PostFeedComponent,
   ],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
 })
+
 export class ProfilePageComponent {
-  profileService = inject(ProfileService);
+  store = inject(Store);
   route = inject(ActivatedRoute);
   router = inject(Router);
-  myProfile$ = toObservable(this.profileService.myProfile);
-  subscribers$ = this.profileService.getSubscribersShortList(5);
-  subscribersCount!: number;
-  isMyPage = signal(false);
+  subscribers$ = this.store.select(selectMyProfileSubscribersList)
+  subscribersCount$ = this.subscribers$.pipe(map(subscribers => subscribers?.length ?? 0));
+  myProfile = this.store.selectSignal(selectMyProfile)
+  id = toSignal(this.route.params.pipe(map(parameters => parameters['id'])), { initialValue: '' });
+  isMyPage = computed(() => {
+    return this.id() === 'me' || this.id() === this.myProfile()?.id;
+  });
+
   profile$ = this.route.params
     .pipe(
-      switchMap(({ id }) => {
-        this.isMyPage.set(
-          id === 'me' || id === this.profileService.myProfile()?.id
-        );
-        if (id === 'me') return this.myProfile$;
-        return this.profileService.getAccount(id);
+      switchMap(({id}) => {
+        if (id === 'me') return this.store.select(selectMyProfile);
+
+        this.store.dispatch(profileActions.getCurrentProfile({id: id}))
+        return this.store.select(selectCurrentProfile)
       })
     );
 
@@ -48,8 +52,6 @@ export class ProfilePageComponent {
   }
 
   ngOnInit(): void {
-    this.subscribers$.subscribe(
-      (response) => (this.subscribersCount = response.length)
-    );
+    this.store.dispatch(profileActions.getMyProfileSubscribersList({limit: 5}))
   }
 }

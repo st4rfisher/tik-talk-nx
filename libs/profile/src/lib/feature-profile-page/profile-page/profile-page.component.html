@@ -23,7 +23,7 @@
     <div class="block">
       <h3 class="h6">
         Подписчики
-        <span class="subscribers-count">{{ subscribersCount }}</span>
+        <span class="subscribers-count">{{ subscribersCount$ | async }}</span>
       </h3>
 
       <div class="subscribers-container">
