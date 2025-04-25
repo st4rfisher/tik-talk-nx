@@ -34,9 +34,9 @@ export const routes: Routes = [
         component: ProfilePageComponent,
         providers: [
           provideState(profileFeature),
-          provideState(postsFeature),
-
           provideEffects(ProfileEffects),
+
+          provideState(postsFeature),
           provideEffects(PostsEffects),
         ]
       },
@@ -61,7 +61,10 @@ export const routes: Routes = [
         loadChildren: () => chatsRoutes,
         providers: [
           provideState(chatsFeature),
-          provideEffects(ChatsEffects)
+          provideEffects(ChatsEffects),
+
+          provideState(profileFeature),
+          provideEffects(ProfileEffects),
         ]
       },
     ],
