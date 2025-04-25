@@ -1,8 +1,9 @@
-import { ProfileService } from '@tt/profile';
+import { ProfileService, profileActions, selectMyProfile } from '@tt/profile';
 import { Component, EventEmitter, Output, Renderer2, inject } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from "@angular/forms";
-import { AvatarComponent, IconComponent } from '@tt/common-ui';;
+import { AvatarComponent, IconComponent } from '@tt/common-ui';import { Store } from '@ngrx/store';
+;
 
 @Component({
   selector: 'app-message-input',
@@ -18,7 +19,8 @@ import { AvatarComponent, IconComponent } from '@tt/common-ui';;
 })
 
 export class MessageInputComponent {
-  myProfile = inject(ProfileService).myProfile
+  store = inject(Store)
+  myProfile = this.store.selectSignal(selectMyProfile)
   renderer = inject(Renderer2) //прослойка для взаимодействия с элементами на разных платформах
   @Output() created = new EventEmitter<string>()
   text = ''
@@ -35,5 +37,9 @@ export class MessageInputComponent {
 
     this.created.emit(this.text)
     this.text = ''
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(profileActions.getMyProfile())
   }
 }
