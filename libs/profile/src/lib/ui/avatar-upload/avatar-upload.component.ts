@@ -1,7 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { IconComponent, DragAndDropDirective } from '@tt/common-ui';
-import { ProfileService } from '@tt/profile';
+import { profileActions, selectMyProfile } from '@tt/profile';
 import { BASE_API_URL } from '../../../../../../global/variables';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-avatar-upload',
@@ -14,9 +15,10 @@ import { BASE_API_URL } from '../../../../../../global/variables';
   styleUrl: './avatar-upload.component.scss',
 })
 export class AvatarUploadComponent {
-  profileService = inject(ProfileService);
-  preview = signal('/assets/images/default-avatar.svg');
+  store = inject(Store)
   avatar: File | null = null;
+  myProfile = this.store.selectSignal(selectMyProfile)
+  preview = signal('/assets/images/default-avatar.svg');
 
   fileBrowserHandler(event: Event) {
     const file = (event.target as HTMLInputElement)?.files?.[0];
@@ -43,9 +45,11 @@ export class AvatarUploadComponent {
   setPreviewOnLoad() {}
 
   ngOnInit(): void {
-    if (this.profileService.myProfile()?.avatarUrl) {
+    this.store.dispatch(profileActions.getMyProfile())
+
+    if (this.myProfile()?.avatarUrl) {
       this.preview.set(
-        `${BASE_API_URL}/${this.profileService.myProfile()?.avatarUrl}`
+        `${BASE_API_URL}/${this.myProfile()?.avatarUrl}`
       );
     }
   }
