@@ -54,7 +54,7 @@ export const profileFeature = createFeature({
     }),
 
     on(profileActions.myProfileSubscribersListLoaded, (state, payload) => {
-      console.log(payload)
+      // console.log(payload)
 
       return {
         ...state,
@@ -63,7 +63,7 @@ export const profileFeature = createFeature({
     }),
 
     on(profileActions.avatarUploaded, (state, payload) => {
-      console.log(payload)
+      // console.log(payload)
 
       return {
         ...state,
@@ -72,7 +72,7 @@ export const profileFeature = createFeature({
     }),
 
     on(profileActions.profileDataPatched, (state, payload) => {
-      console.log(payload)
+      // console.log(payload)
 
       return {
         ...state,

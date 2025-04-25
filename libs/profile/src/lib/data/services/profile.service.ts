@@ -8,10 +8,9 @@ import { BASE_API_URL } from 'global/variables';
 @Injectable({
   providedIn: 'root',
 })
+
 export class ProfileService {
   http = inject(HttpClient)
-  #storeService = inject(StoreService)
-  myProfile = signal<Profile | null>(null);
 
   getSubscribersShortList(limit: number = 3) {
     return this.http.get<Pageable<Profile>>(`${BASE_API_URL}/account/subscribers/`)
@@ -28,13 +27,6 @@ export class ProfileService {
 
   getMyAccount() {
     return this.http.get<Profile>(`${BASE_API_URL}/account/me`)
-      .pipe(
-        tap((response) => {
-          this.myProfile.set(response);
-          console.log(this.myProfile());
-          this.#storeService.myProfile.set(response)
-        })
-      );
   }
 
   patchProfileData(data: Partial<Profile>) {
