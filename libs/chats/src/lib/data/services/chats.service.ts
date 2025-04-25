@@ -2,15 +2,17 @@ import { BASE_API_URL } from '../../../../../../global/variables';
 import { Chat, Message, LastMessageResponse } from '../interfaces/chats.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
-import { ProfileService } from '@tt/profile';
-import { catchError, map, tap } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectMyProfile } from '@tt/profile';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatsService {
+  store = inject(Store)
   http = inject(HttpClient);
-  myProfile = inject(ProfileService).myProfile;
+  myProfile = this.store.selectSignal(selectMyProfile)
   activeChatMessages = signal<Message[]>([]);
 
   createChat(userId: number) {
