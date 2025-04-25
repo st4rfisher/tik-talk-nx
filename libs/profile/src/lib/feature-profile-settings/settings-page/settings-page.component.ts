@@ -1,15 +1,14 @@
 import { Component, ViewChild, effect, inject } from '@angular/core';
 import { ProfileHeaderComponent } from '../../ui';
-import { ProfileService } from '@tt/profile';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { profileActions, selectMyProfile } from '@tt/profile';
 import { AsyncPipe } from '@angular/common';
 import {
   FormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { firstValueFrom } from 'rxjs';
 import { AvatarUploadComponent } from '../../ui';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-settings',
@@ -26,10 +25,10 @@ import { AvatarUploadComponent } from '../../ui';
 })
 export class SettingsPageComponent {
   @ViewChild(AvatarUploadComponent) avatarUploader!: AvatarUploadComponent;
-  profileService = inject(ProfileService);
-  myProfile$ = toObservable(this.profileService.myProfile);
+  store = inject(Store)
+  myProfile = this.store.selectSignal(selectMyProfile)
+  myProfile$ = this.store.select(selectMyProfile)
   formBuilder = inject(FormBuilder);
-
   form = this.formBuilder.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
@@ -41,37 +40,32 @@ export class SettingsPageComponent {
   constructor() {
     effect(() => {
       this.form.patchValue({
-        ...this.profileService.myProfile(),
-        stack: this.mergeStack(this.profileService.myProfile()?.stack),
+        ...this.myProfile(),
+        stack: this.mergeStack(this.myProfile()?.stack),
       });
     });
   }
 
   onSave() {
-    console.log(1);
     this.form.markAllAsTouched();
     this.form.updateValueAndValidity();
 
     if (this.form.invalid) return;
 
     if (this.avatarUploader.avatar) {
-      firstValueFrom(
-        //@ts-ignore
-        this.profileService.uploadAvatar(this.avatarUploader.avatar)
-      );
-      console.log(this.avatarUploader.avatar);
+      this.store.dispatch(profileActions.uploadAvatar({ avatar: this.avatarUploader.avatar}))
     }
 
-    firstValueFrom(
+    this.store.dispatch(profileActions.patchProfileData({
       //@ts-ignore
-      this.profileService.patchProfileData({
+      data: {
         ...this.form.value,
-        stack: this.splitStack(this.form.value.stack),
-      })
-    );
+        stack: this.splitStack(this.form.value.stack)
+      }
+    }))
   }
 
-  splitStack(stack: string | null | string[] | undefined) {
+  splitStack(stack: string | null | string[] | undefined): string[] {
     if (!stack) return [];
     if (Array.isArray(stack)) return stack;
 
@@ -83,5 +77,9 @@ export class SettingsPageComponent {
     if (Array.isArray(stack)) return stack.join(',');
 
     return stack;
+  }
+
+  ngOnInit() {
+    this.store.dispatch(profileActions.getMyProfile())
   }
 }
