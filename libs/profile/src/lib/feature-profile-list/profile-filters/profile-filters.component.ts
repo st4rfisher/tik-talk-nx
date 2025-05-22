@@ -28,7 +28,7 @@ export class ProfileFiltersComponent implements OnDestroy {
         debounceTime(300),
       )
       .subscribe(formValue => {
-        return this.store.dispatch(profileActions.filterEvents({ filters: formValue }))
+        return this.store.dispatch(profileActions.filterEvent({ filters: formValue }))
       });
   }
 

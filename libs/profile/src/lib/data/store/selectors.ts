@@ -6,6 +6,21 @@ export const selectFilteredProfiles = createSelector(
   (profiles) => profiles
 )
 
+export const selectProfilePageable = createSelector(
+  profileFeature.selectProfileFeatureState,
+  (state) => {
+    return {
+      page: state.page,
+      size: state.size
+    }
+  }
+)
+
+export const selectProfileFilters = createSelector(
+  profileFeature.selectProfileFilters,
+  (filters) => filters
+)
+
 export const selectCurrentProfile = createSelector(
   profileFeature.selectCurrentProfile,
   (currentProfile) => currentProfile

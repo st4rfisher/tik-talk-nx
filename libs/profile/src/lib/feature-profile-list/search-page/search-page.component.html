@@ -1,6 +1,40 @@
 <app-profile-filters />
-<div class="wrapper">
-  @for(profile of profiles(); track profile.id) {
-  <app-profile-card [profile]="profile" />
+
+<!--Декларативный скролл webApis Angular-->
+<div class="wrapper" waIntersectionObserver waIntersectionThreshold="0.5">
+<!-- <div class="wrapper"> -->
+  <!-- infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  [infiniteScrollContainer]="'app-search-page'"
+  (scrolled)="onScroll()"
+  [fromRoot]="true" -->
+
+<!--Декларативный скролл webApis Angular-->
+@for(profile of profiles(); track profile.id; let last = $last) {
+  <!-- @for(profile of profiles(); track profile.id) { -->
+    <!-- <app-profile-card
+      [profile]="profile"
+    /> -->
+
+    <!--Декларативный скролл webApis Angular-->
+    <app-profile-card
+      (waIntersectionObservee)="last ? onIntersection($event) : null"
+      [profile]="profile"
+    />
+
+    <!--Декларативный скролл Angular-->
+    <!-- <app-profile-card
+      [profile]="profile"
+    />
+    @if(last) {
+      @defer (on viewport) {
+        <app-infinite-scroll-trigger
+          (loaded)="fetchItems()"
+        />
+      } @placeholder {
+        <div></div>
+      }
+    } -->
   }
 </div>

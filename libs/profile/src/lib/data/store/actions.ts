@@ -4,7 +4,8 @@ import { Profile } from "@tt/interfaces/profile";
 export const profileActions = createActionGroup({
   source: 'profile',
   events: {
-    'filter events': props<{filters: Record<string, any>}>(),
+    'filter event': props<{filters: Record<string, any>}>(),
+    'set page': props<{page?: number}>(),
     'profiles loaded': props<{profiles: Profile[]}>(),
 
     'get current profile': props<{id: string}>(),
