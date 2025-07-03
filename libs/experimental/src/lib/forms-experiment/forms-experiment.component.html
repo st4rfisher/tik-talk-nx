@@ -1,0 +1,160 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <h4 class="h4">Информация о доставке</h4>
+
+  <label class="label">
+    Тип получателя
+
+    <select class="input" formControlName="type">
+      <option [value]="ReceiverType.PERSON">Физическое лицо</option>
+      <option [value]="ReceiverType.LEGAL">Юридическое лицо</option>
+    </select>
+  </label>
+
+  <label class="label">
+    Имя
+
+    <input
+      formControlName="name"
+      class="input"
+      type="text"
+      placeholder="Введите имя"
+    >
+    <!-- <small class="validation">Это поле обязательно!</small> -->
+  </label>
+
+  @if (form.controls.name.touched && form.controls.name.hasError('nameValid')) {
+    <small>{{ form.controls.name.getError('nameValid')?.message }} </small>
+  }
+
+  @if (form.controls.name.touched && form.controls.name.hasError('startsWith')) {
+    <small>{{ form.controls.name.getError('startsWith')?.message }} </small>
+  }
+
+  @if (form.controls.name.touched && form.controls.name.hasError('required')) {
+    <small>Это поле обязательно!</small>
+  }
+
+  @if (form.controls.type.value === ReceiverType.LEGAL) {
+    <label class="label">
+      ИНН
+
+      <input
+        formControlName="inn"
+        class="input"
+        type="text"
+        placeholder="Введите ИНН"
+      >
+    </label>
+  } @else {
+    <label class="label">
+      Фамилия
+
+      <input
+        formControlName="lastName"
+        class="input"
+        type="text"
+        placeholder="Введите фамилию"
+      >
+    </label>
+  }
+
+  <div class="heading">
+    <h4 class="h6">Период доставки</h4>
+  </div>
+
+  <div class="two-columns" formGroupName="dateRange">
+    <label class="label">
+      От
+
+      <input
+        formControlName="from"
+        class="input"
+        type="date"
+      >
+    </label>
+
+    <label class="label">
+      До
+
+      <input
+        formControlName="to"
+        class="input"
+        type="date"
+      >
+    </label>
+  </div>
+
+  @if (form.controls.dateRange.touched && form.controls.dateRange.hasError('dateRange')) {
+    <small>{{ form.controls.dateRange.getError('dateRange').message }}</small>
+  }
+
+  <div>
+    <div class="heading">
+      <h4 class="h6">Адрес доставки</h4>
+      <button class="button button--primary" type="button" (click)="addAddress()">+</button>
+    </div>
+
+    @for(group of form.controls.addresses.controls; track group; let index = $index) {
+      <div class="form-grid" [formGroup]="group">
+        <label class="label">
+          Город
+          <input
+            formControlName="city"
+            class="input"
+            type="text"
+            placeholder="Город"
+          />
+        </label>
+
+        <label class="label">
+          Улица
+          <input
+            formControlName="street"
+            class="input"
+            type="text"
+            placeholder="Улица"
+          />
+        </label>
+
+        <label class="label">
+          Дом
+          <input
+            formControlName="building"
+            class="input"
+            type="text"
+            placeholder="Дом"
+          />
+        </label>
+
+        <label class="label">
+          Квартира
+          <input
+            formControlName="apartment"
+            class="input"
+            type="text"
+            placeholder="Квартира"
+          />
+        </label>
+
+        <button class="button button--primary" type="button" (click)="deleteAddress(index)">Удалить</button>
+      </div>
+    }
+  </div>
+
+  <div [formGroup]="form.controls.feature">
+    <h4 class="h4">Дополнительно</h4>
+
+    <div style="display: grid; grid-gap: 16px;">
+      @for (control of form.controls.feature.controls | keyvalue: sort; track control; let i = $index) {
+        <label class="label">
+          {{ features[i].label }}
+          <input
+            type="checkbox"
+            [formControlName]="control.key"
+          />
+        </label>
+      }
+    </div>
+  </div>
+  <button class="button button--primary button--shadow" type="submit">Подтвердить</button>
+</form>
