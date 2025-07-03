@@ -1,0 +1,19 @@
+<div class="stack-control">
+  @for (skill of value$ | async; track skill; let i=$index) {
+    <div class="tag stack-tag">
+      <button class="button button--action"
+        type="button"
+        (click)="onTagDelete(i)"
+      >
+        <svg class="icon" icon="cross" height="16" width="16"></svg>
+      </button>
+      {{ skill }}
+    </div>
+  }
+
+  <input
+    [(ngModel)]="innerInput"
+    type="text"
+    class="stack-ghost-input"
+  >
+</div>

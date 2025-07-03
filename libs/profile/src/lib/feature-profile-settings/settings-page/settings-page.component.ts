@@ -9,6 +9,8 @@ import {
 } from '@angular/forms';
 import { AvatarUploadComponent } from '../../ui';
 import { Store } from '@ngrx/store';
+import { StackInputComponent } from "../../../../../common-ui/src/lib/components/stack-input/stack-input.component";
+import { IconComponent } from '@tt/common-ui'
 
 @Component({
   selector: 'app-settings',
@@ -17,9 +19,10 @@ import { Store } from '@ngrx/store';
     ProfileHeaderComponent,
     ReactiveFormsModule,
     AsyncPipe,
-    // IconComponent,
+    IconComponent,
     AvatarUploadComponent,
-  ],
+    StackInputComponent
+],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
 })
@@ -34,16 +37,26 @@ export class SettingsPageComponent {
     lastName: ['', Validators.required],
     username: [{ value: '', disabled: true }, Validators.required],
     description: [''],
-    stack: [''],
+    stack: [{ value: '', disabled: true }],
   });
 
   constructor() {
     effect(() => {
+      //@ts-ignore
       this.form.patchValue({
         ...this.myProfile(),
-        stack: this.mergeStack(this.myProfile()?.stack),
+        // stack: this.mergeStack(this.myProfile()?.stack),
       });
     });
+
+    // this.myProfile$.subscribe(data => {
+    //   console.log(data)
+    //   //@ts-ignore
+    //   this.form.patchValue({
+    //     ...data,
+    //     // stack: this.mergeStack(this.myProfile()?.stack),
+    //   });
+    // })
   }
 
   onSave() {
@@ -60,24 +73,26 @@ export class SettingsPageComponent {
       //@ts-ignore
       data: {
         ...this.form.value,
-        stack: this.splitStack(this.form.value.stack)
+        // stack: this.splitStack(this.form.value.stack)
       }
     }))
+
+    console.log(this.form.value)
   }
 
-  splitStack(stack: string | null | string[] | undefined): string[] {
-    if (!stack) return [];
-    if (Array.isArray(stack)) return stack;
+  // splitStack(stack: string | null | string[] | undefined): string[] {
+  //   if (!stack) return [];
+  //   if (Array.isArray(stack)) return stack;
 
-    return stack.split(',');
-  }
+  //   return stack.split(',');
+  // }
 
-  mergeStack(stack: string | null | string[] | undefined) {
-    if (!stack) return '';
-    if (Array.isArray(stack)) return stack.join(',');
+  // mergeStack(stack: string | null | string[] | undefined) {
+  //   if (!stack) return '';
+  //   if (Array.isArray(stack)) return stack.join(',');
 
-    return stack;
-  }
+  //   return stack;
+  // }
 
   ngOnInit() {
     this.store.dispatch(profileActions.getMyProfile())

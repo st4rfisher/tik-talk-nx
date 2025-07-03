@@ -1,0 +1,37 @@
+.stack-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  border-bottom: var(--light-border);
+  background-color: var(--dark-color);
+  padding: 12px 0;
+}
+
+.stack-tag {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  user-select: none;
+}
+
+.stack-ghost-input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--light-color);
+  border: none;
+  background: none;
+  outline: none;
+  flex-grow: 1;
+  min-width: 20px;
+}
+
+:host {
+  &.disabled {
+    .stack-control {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+}
