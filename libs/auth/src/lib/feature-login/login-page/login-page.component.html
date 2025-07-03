@@ -1,5 +1,12 @@
 <form action="" class="login-form" [formGroup]="form" (ngSubmit)="submit()">
   <h1 class="h1">Вход</h1>
+  <!-- <tt-input
+    type="text"
+    placeholder="Введите логин"
+    formControlName="username"
+  >
+    Логин
+  </tt-input> -->
   <label class="label">
     Логин
     <input
@@ -21,6 +28,7 @@
         class="input"
         [type]="isPasswordVisible() ? 'text' : 'password'"
         placeholder="Введите пароль"
+        autocomplete
       />
       <button
         class="button button--action"
