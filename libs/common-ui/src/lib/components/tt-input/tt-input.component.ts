@@ -1,13 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, forwardRef, input, signal } from '@angular/core';
+import { Component, computed, effect, forwardRef, input, signal } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { IconComponent } from '../icon/icon.component';
+
 @Component({
   selector: 'tt-input',
   standalone: true,
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IconComponent
   ],
   templateUrl: './tt-input.component.html',
   styleUrl: './tt-input.component.scss',
@@ -21,12 +24,33 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModu
 })
 
 export class TtInputComponent implements ControlValueAccessor {
+  //входные параметры
   type = input<'text' | 'password'>('text')
   placeholder = input<string>()
+  isAutocomplete = input<boolean>(false);
+
+  //локальные параметры
+  localType = signal<'text' | 'password'>(this.type())
+  isPasswordVisible = signal<boolean>(false);
+  isDisabled = signal<boolean>(false)
+
+  //Параметры для кастомного контрола
   onChange: any
   onTouched: any
   value: string | null = null
-  disabled = signal<boolean>(false)
+
+  ngOnInit(): void {
+    this.localType.set(this.type());
+  }
+
+  onModelChange(value: string | null): void {
+    this.onChange(value)
+  }
+
+  togglePasswordVisibility() {
+    this.localType() === 'password' ? this.localType.set("text") : this.localType.set("password")
+    this.isPasswordVisible.set(!this.isPasswordVisible())
+  }
 
   //ниже 4 обязательных метода для реализации NG_VALUE_ACCESSOR для кастомного контрола
   writeValue(value: string | null) {
@@ -42,10 +66,6 @@ export class TtInputComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this.disabled.set(isDisabled)
-  }
-
-  onModelChange(value: string | null): void {
-    this.onChange(value)
+    this.isDisabled.set(isDisabled)
   }
 }

@@ -14,12 +14,6 @@
   margin-bottom: 60px;
 }
 
-.label {
-  font-weight: 700;
-  row-gap: 8px;
-  margin-top: 8px;
-}
-
 .input-wrapper {
   position: relative;
 }
@@ -30,20 +24,12 @@
   border-radius: 4px;
 }
 
-.button {
-  &--primary {
-    width: 100%;
-    margin-top: 34px;
-  }
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
-  &--action {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 16px;
-  }
-
-  &--active {
-    color: var(--primary-color);
-  }
+.button--primary {
+  margin-top: 24px;
 }

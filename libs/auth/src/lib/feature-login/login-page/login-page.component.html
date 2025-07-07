@@ -1,13 +1,13 @@
 <form action="" class="login-form" [formGroup]="form" (ngSubmit)="submit()">
   <h1 class="h1">Вход</h1>
-  <!-- <tt-input
+  <tt-input
     type="text"
     placeholder="Введите логин"
     formControlName="username"
   >
     Логин
-  </tt-input> -->
-  <label class="label">
+  </tt-input>
+  <!-- <label class="label">
     Логин
     <input
       id="username"
@@ -17,8 +17,8 @@
       type="text"
       placeholder="Введите логин"
     />
-  </label>
-  <label class="label">
+  </label> -->
+  <!-- <label class="label">
     Пароль
     <span class="input-wrapper">
       <input
@@ -50,7 +50,16 @@
         </svg>
       </button>
     </span>
-  </label>
+  </label> -->
+  <tt-input
+    type="password"
+    placeholder="Введите пароль"
+    formControlName="password"
+    [isAutocomplete]="true"
+  >
+    Пароль
+  </tt-input>
+
   <button type="submit" class="button button--primary button--shadow">
     Войти
   </button>

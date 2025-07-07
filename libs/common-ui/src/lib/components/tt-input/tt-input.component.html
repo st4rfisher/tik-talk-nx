@@ -1,12 +1,28 @@
 <label class="label">
   <ng-content></ng-content>
-  <input
-    [ngModel]="value"
-    (ngModelChange)="onModelChange($event)"
-    class="input"
-    [type]="type()"
-    [placeholder]="placeholder()"
-    (blur)="onTouched()"
-    [disabled]="disabled()"
-  />
+  <span class="input-wrapper">
+    <input
+      class="input"
+      [ngModel]="value"
+      (ngModelChange)="onModelChange($event)"
+      [type]="localType()"
+      [placeholder]="placeholder()"
+      (blur)="onTouched()"
+      [disabled]="isDisabled()"
+      [autocomplete]="isAutocomplete()"
+    />
+    @if (type() === 'password') {
+      <button
+        class="button button--action"
+        [class.button--active]="isPasswordVisible()"
+        (click)="togglePasswordVisibility()"
+      >
+        @if (isPasswordVisible()) {
+          <svg class="icon" icon="eye-crossed" height="24" width="24"></svg>
+        } @else {
+          <svg class="icon" icon="eye" height="24" width="24"></svg>
+        }
+      </button>
+    }
+  </span>
 </label>
