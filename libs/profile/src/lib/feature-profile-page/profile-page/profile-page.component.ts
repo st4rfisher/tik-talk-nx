@@ -11,7 +11,7 @@ import { PostFeedComponent } from '@tt/posts';
 import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-profile-page',
   standalone: true,
   imports: [
     RouterLink,

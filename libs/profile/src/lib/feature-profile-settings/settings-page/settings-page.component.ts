@@ -13,7 +13,7 @@ import { StackInputComponent } from "../../../../../common-ui/src/lib/components
 import { IconComponent } from '@tt/common-ui'
 
 @Component({
-  selector: 'app-settings',
+  selector: 'app-settings-page',
   standalone: true,
   imports: [
     ProfileHeaderComponent,
