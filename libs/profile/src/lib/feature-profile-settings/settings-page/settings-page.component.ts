@@ -11,6 +11,7 @@ import { AvatarUploadComponent } from '../../ui';
 import { Store } from '@ngrx/store';
 import { StackInputComponent } from "../../../../../common-ui/src/lib/components/stack-input/stack-input.component";
 import { IconComponent } from '@tt/common-ui'
+import { TtInputComponent } from "@tt/common-ui";
 import { AddressInputComponent } from "@tt/common-ui";
 
 @Component({
@@ -22,6 +23,8 @@ import { AddressInputComponent } from "@tt/common-ui";
     AsyncPipe,
     IconComponent,
     AvatarUploadComponent,
+    StackInputComponent,
+    TtInputComponent,
     AddressInputComponent
 ],
   templateUrl: './settings-page.component.html',

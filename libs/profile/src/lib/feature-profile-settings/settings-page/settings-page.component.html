@@ -4,7 +4,15 @@
   <form class="form" [formGroup]="form">
     <div class="form__top">
       <div class="split-area">
-        <label class="label">
+        <tt-input
+          styleClasses="input input--border-bottom"
+          type="text"
+          placeholder="Введите имя"
+          formControlName="firstName"
+        >
+          Имя
+        </tt-input>
+        <!-- <label class="label">
           Имя
           <input
             id="firstname"
@@ -14,8 +22,16 @@
             type="text"
             placeholder="Введите имя"
           />
-        </label>
-        <label class="label">
+        </label> -->
+        <tt-input
+          styleClasses="input input--border-bottom"
+          type="text"
+          placeholder="Введите фамилию"
+          formControlName="lastName"
+        >
+          Фамилия
+        </tt-input>
+        <!-- <label class="label">
           Фамилия
           <input
             id="lastname"
@@ -25,9 +41,9 @@
             type="text"
             placeholder="Введите фамилию"
           />
-        </label>
+        </label> -->
       </div>
-      <label class="label">
+      <!-- <label class="label">
         Telegram Username
         <input
           id="username"
@@ -37,7 +53,16 @@
           type="text"
           placeholder="-"
         />
-      </label>
+      </label> -->
+      <tt-input
+        styleClasses="input input--border-bottom"
+        type="text"
+        placeholder="Введите фамилию"
+        formControlName="username"
+      >
+        Telegram Username
+      </tt-input>
+
       <label class="label">
         О себе
         <textarea

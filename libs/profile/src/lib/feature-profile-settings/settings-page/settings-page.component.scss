@@ -6,9 +6,18 @@
 }
 
 .form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   padding: 32px;
   border: var(--light-border);
   background: var(--dark-color);
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
 
   &__bottom,
   &__buttons {
@@ -34,7 +43,6 @@
 .label {
   font-weight: 400;
   row-gap: 4px;
-  margin-bottom: 24px;
 }
 
 input {

@@ -2,7 +2,7 @@
   <ng-content></ng-content>
   <span class="input-wrapper">
     <input
-      class="input"
+      [class]="localStyleClasses()"
       [ngModel]="value"
       (ngModelChange)="onModelChange($event)"
       [type]="localType()"

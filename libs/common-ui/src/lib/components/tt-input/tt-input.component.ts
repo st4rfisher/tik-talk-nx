@@ -26,11 +26,13 @@ import { IconComponent } from '../icon/icon.component';
 export class TtInputComponent implements ControlValueAccessor {
   //входные параметры
   type = input<'text' | 'password'>('text')
+  styleClasses = input<string>('input')
   placeholder = input<string>()
   isAutocomplete = input<boolean>(false);
 
   //локальные параметры
   localType = signal<'text' | 'password'>(this.type())
+  localStyleClasses = signal<string>(this.styleClasses())
   isPasswordVisible = signal<boolean>(false);
   isDisabled = signal<boolean>(false)
 
@@ -41,6 +43,7 @@ export class TtInputComponent implements ControlValueAccessor {
 
   ngOnInit(): void {
     this.localType.set(this.type());
+    this.localStyleClasses.set(this.styleClasses())
   }
 
   onModelChange(value: string | null): void {
