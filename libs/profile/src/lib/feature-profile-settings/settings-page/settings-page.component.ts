@@ -11,6 +11,7 @@ import { AvatarUploadComponent } from '../../ui';
 import { Store } from '@ngrx/store';
 import { StackInputComponent } from "../../../../../common-ui/src/lib/components/stack-input/stack-input.component";
 import { IconComponent } from '@tt/common-ui'
+import { AddressInputComponent } from "@tt/common-ui";
 
 @Component({
   selector: 'app-settings-page',
@@ -21,7 +22,7 @@ import { IconComponent } from '@tt/common-ui'
     AsyncPipe,
     IconComponent,
     AvatarUploadComponent,
-    StackInputComponent
+    AddressInputComponent
 ],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
@@ -37,7 +38,8 @@ export class SettingsPageComponent {
     lastName: ['', Validators.required],
     username: [{ value: '', disabled: true }, Validators.required],
     description: [''],
-    stack: [{ value: '', disabled: true }],
+    stack: [''],
+    city: ['']
   });
 
   constructor() {
@@ -49,14 +51,14 @@ export class SettingsPageComponent {
       });
     });
 
-    // this.myProfile$.subscribe(data => {
-    //   console.log(data)
-    //   //@ts-ignore
-    //   this.form.patchValue({
-    //     ...data,
-    //     // stack: this.mergeStack(this.myProfile()?.stack),
-    //   });
-    // })
+    this.myProfile$.subscribe(data => {
+      console.log(data)
+      //@ts-ignore
+      // this.form.patchValue({
+      //   ...data,
+      //   // stack: this.mergeStack(this.myProfile()?.stack),
+      // });
+    })
   }
 
   onSave() {
