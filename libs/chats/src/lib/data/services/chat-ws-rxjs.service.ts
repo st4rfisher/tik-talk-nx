@@ -18,7 +18,7 @@ export class ChatWSRxjsService implements ChatWSService {
     return this.#socket.asObservable()
       .pipe(
         tap(message => params.handleMessage(message)),
-        finalize(() => console.log('WebSocket connected'))
+        finalize(() => console.log('WebSocket closed'))
       )
   }
 
