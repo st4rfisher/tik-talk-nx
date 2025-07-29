@@ -27,6 +27,7 @@ export class ChatsListComponent {
   filterChatsControl = new FormControl('');
   chats$ = this.store.select(selectChats).pipe(
     switchMap((chats) => {
+      console.log(chats)
       return this.filterChatsControl.valueChanges.pipe(
         startWith(''),
         map((inputValue) => {
@@ -41,6 +42,7 @@ export class ChatsListComponent {
   );
 
   constructor() {
+    // this.store.dispatch(chatsQueryActions.createActiveChat({id: 125}))
     this.store.dispatch(chatsQueryActions.fetchMyChats())
   }
 }

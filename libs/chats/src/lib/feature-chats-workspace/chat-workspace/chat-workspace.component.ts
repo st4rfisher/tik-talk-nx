@@ -26,6 +26,7 @@ export class ChatWorkspaceComponent {
   activeChat$ = this.route.params
     .pipe(
       switchMap(({ id }) => {
+        console.log(id)
         if(id === 'new') {
           return this.route.queryParams.pipe(
             filter(({userId}) => userId),

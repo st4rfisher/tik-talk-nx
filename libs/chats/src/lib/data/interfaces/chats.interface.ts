@@ -15,9 +15,9 @@ export interface Message {
   text: string;
   createdAt: string;
   isRead: boolean;
-  updatedAt: string;
-  user: Profile;
-  isMine: boolean;
+  updatedAt?: string;
+  user?: Profile;
+  isMine?: boolean;
 }
 
 export interface LastMessageResponse {
