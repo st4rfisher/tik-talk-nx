@@ -6,7 +6,7 @@ export const chatsQueryActions = createActionGroup({
   events: {
     'fetch my chats': emptyProps(),
     'create active chat': props<{id: number}>(),
-    'fetch active chat': props<{id: number | string}>(),
+    'fetch active chat': props<{id: number}>(),
   }
 })
 
