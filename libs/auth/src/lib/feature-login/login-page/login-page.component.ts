@@ -32,7 +32,6 @@ export class LoginPageComponent {
 
   submit() {
     if (this.form.valid) {
-      //@ts-ignore
       this.authService.login(this.form.value).subscribe((response) => {
         this.router.navigate(['']);
         console.log(response);

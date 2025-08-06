@@ -19,7 +19,7 @@ export class ProfileFiltersComponent implements OnDestroy {
     lastName: [''],
     stack: [''],
   });
-  searchFormSubscription!: Subscription;
+  // searchFormSubscription!: Subscription;
 
   constructor() {
     this.searchForm.valueChanges
@@ -33,6 +33,6 @@ export class ProfileFiltersComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.searchFormSubscription.unsubscribe()
+    // this.searchFormSubscription.unsubscribe()
   }
 }
