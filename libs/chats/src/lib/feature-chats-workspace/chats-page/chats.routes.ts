@@ -9,7 +9,7 @@ export const chatsRoutes: Route[] = [
     children: [
       {
         path: '',
-        redirectTo: String(localStorage.getItem('lastActiveChat')),
+        redirectTo: '',
         pathMatch: 'full',
       },
       {

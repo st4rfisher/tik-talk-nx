@@ -21,7 +21,9 @@ export interface Message {
 }
 
 export interface LastMessageResponse {
-  id: number;
-  userFrom: Profile;
-  message: string | null;
+  id: number,
+  userFrom: Profile,
+  message: string | null,
+  createdAt: string,
+  unreadMessages: number
 }

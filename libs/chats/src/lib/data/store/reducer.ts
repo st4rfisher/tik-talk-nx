@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from "@ngrx/store";
 import { Chat, LastMessageResponse } from '../../data';
-import { chatsResponseActions } from "./actions";
+import { chatsActions } from "./actions";
 
 export interface ChatsState {
   chatsList: LastMessageResponse[] | null,
@@ -19,7 +19,7 @@ export const chatsFeature = createFeature({
   reducer: createReducer(
     chatsState,
 
-    on(chatsResponseActions.chatsLoaded, (state, payload) => {
+    on(chatsActions.chatsLoaded, (state, payload) => {
       // console.log(payload.chats)
       return {
         ...state,
@@ -27,7 +27,7 @@ export const chatsFeature = createFeature({
       }
     }),
 
-    on(chatsResponseActions.activeChatCreated, (state, payload) => {
+    on(chatsActions.activeChatCreated, (state, payload) => {
       // console.log(payload.chats)
       return {
         ...state,
@@ -35,7 +35,7 @@ export const chatsFeature = createFeature({
       }
     }),
 
-    on(chatsResponseActions.activeChatLoaded, (state, payload) => {
+    on(chatsActions.activeChatLoaded, (state, payload) => {
       // console.log(payload.chat)
       return {
         ...state,

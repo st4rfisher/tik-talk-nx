@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ChatWorkspaceHeaderComponent } from './chat-workspace-header/chat-workspace-header.component';
 import { ChatWorkspaceMessagesWrapperComponent } from './chat-workspace-messages-wrapper/chat-workspace-messages-wrapper.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { chatsQueryActions, selectActiveChat } from '@tt/chats';
+import { chatsActions, selectActiveChat } from '@tt/chats';
 import { filter, of, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
@@ -31,7 +31,7 @@ export class ChatWorkspaceComponent {
           return this.route.queryParams.pipe(
             filter(({userId}) => userId),
             switchMap(({userId}) => {
-              this.store.dispatch(chatsQueryActions.createActiveChat(userId))
+              this.store.dispatch(chatsActions.createActiveChat(userId))
 
               return this.store.select(selectActiveChat).pipe(
                 switchMap(chat => {
@@ -43,7 +43,7 @@ export class ChatWorkspaceComponent {
           )
         }
 
-        this.store.dispatch(chatsQueryActions.fetchActiveChat({id}))
+        this.store.dispatch(chatsActions.fetchActiveChat({id}))
         return this.store.select(selectActiveChat)
       }
     )
