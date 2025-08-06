@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ChatsItemComponent } from '../chats-item/chats-item.component';
-import { chatsQueryActions, selectChats } from '@tt/chats';
+import { chatsActions, selectChats } from '@tt/chats';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormControl } from '@angular/forms';
@@ -43,6 +43,6 @@ export class ChatsListComponent {
 
   constructor() {
     // this.store.dispatch(chatsQueryActions.createActiveChat({id: 125}))
-    this.store.dispatch(chatsQueryActions.fetchMyChats())
+    this.store.dispatch(chatsActions.fetchMyChats())
   }
 }
