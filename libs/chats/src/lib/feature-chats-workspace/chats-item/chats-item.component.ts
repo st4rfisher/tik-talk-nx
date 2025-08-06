@@ -1,14 +1,19 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { AvatarComponent } from '@tt/common-ui';
 import { LastMessageResponse } from '@tt/chats';
 
 @Component({
   selector: 'button[chats-item]',
   standalone: true,
-  imports: [AvatarComponent],
+  imports: [
+    AvatarComponent,
+  ],
   templateUrl: './chats-item.component.html',
   styleUrl: './chats-item.component.scss',
 })
+
 export class ChatsItemComponent {
   chat = input<LastMessageResponse>();
+  unreadMessages = signal<number>(0)
+  
 }
