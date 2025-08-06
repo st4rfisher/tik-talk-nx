@@ -13,16 +13,16 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 
 export class ChatsPageComponent {
-  #chatsService = inject(ChatsService)
+  // #chatsService = inject(ChatsService)
 
-  constructor() {
-    //подключение через сокет, основанный на Rxjs
-    this.#chatsService.connectWSThroughRxjs()
-    .pipe(takeUntilDestroyed())
-    .subscribe()
-  }
+  // constructor() {
+  //   //подключение через сокет, основанный на Rxjs
+  //   this.#chatsService.connectWSThroughRxjs()
+  //   .pipe(takeUntilDestroyed())
+  //   .subscribe()
+  // }
 
-  ngOnInit(): void {
-    // this.#chatsService.connectWS() //подключение через нативный сокет
-  }
+  // ngOnInit(): void {
+  //   // this.#chatsService.connectWS() //подключение через нативный сокет
+  // }
 }
