@@ -5,16 +5,14 @@ export const chatsActions = createActionGroup({
   source: 'chats',
   events: {
     'fetch my chats': emptyProps(),
-    'create active chat': props<{id: number}>(),
-    'fetch active chat': props<{id: number}>(),
-  }
-})
-
-export const chatsResponseActions = createActionGroup({
-  source: 'chats',
-  events: {
     'chats loaded': props<{chats: LastMessageResponse[]}>(),
+
+    'create active chat': props<{id: number}>(),
     'active chat created': props<{chat: Chat}>(),
+
+    'fetch active chat': props<{id: number}>(),
     'active chat loaded': props<{chat: Chat}>(),
+
+    'set unread messages count': props<{count: number}>(),
   }
 })

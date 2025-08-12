@@ -4,9 +4,7 @@ import { chatsActions } from "./actions";
 
 export interface ChatsState {
   chatsList: LastMessageResponse[] | null,
-  activeChat: Chat | null
-
-  // chats: Chat[]
+  activeChat: Chat | null,
 }
 
 export const chatsState: ChatsState = {
@@ -40,6 +38,14 @@ export const chatsFeature = createFeature({
       return {
         ...state,
         activeChat: payload.chat
+      }
+    }),
+
+    on(chatsActions.setUnreadMessagesCount, (state, payload) => {
+      // console.log(payload.chat)
+      return {
+        ...state,
+        unreadMessages: payload.count
       }
     }),
   )
