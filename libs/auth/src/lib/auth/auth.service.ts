@@ -11,6 +11,7 @@ import { BASE_API_URL } from 'global/variables';
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   http = inject(HttpClient);
   cookieService = inject(CookieService);
@@ -32,8 +33,7 @@ export class AuthService {
     formData.append('username', payload.username);
     formData.append('password', payload.password);
 
-    return this.http
-      .post<TokenResponse>(`${BASE_API_URL}/auth/token`, formData)
+    return this.http.post<TokenResponse>(`${BASE_API_URL}/auth/token`, formData)
       .pipe(tap((response) => this.saveTokens(response)));
   }
 
@@ -45,8 +45,7 @@ export class AuthService {
   }
 
   refreshAuthToken() {
-    return this.http
-      .post<TokenResponse>(`${BASE_API_URL}/auth/refresh`, {
+    return this.http.post<TokenResponse>(`${BASE_API_URL}/auth/refresh`, {
         refresh_token: this.refreshToken,
       })
       .pipe(

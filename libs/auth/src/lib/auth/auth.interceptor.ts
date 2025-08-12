@@ -15,12 +15,15 @@ import {
 } from 'rxjs';
 // import { TokenResponse } from "@/model/auth";
 
+//переменная, отвечающая за то, обновляется ли в данный момент токен
 let isRefreshing$ = new BehaviorSubject<boolean>(false);
 
 export const authTokenInterceptor: HttpInterceptorFn = (request, next) => {
-  if(request.url.includes('dadata.ru')) return next(request)
   const authService = inject(AuthService);
   const token = authService.token;
+
+  //пропуск запроса если он идет на dadata.ru
+  if(request.url.includes('dadata.ru')) return next(request)
 
   //если токена нет, то пропустить запрос
   if (!token) return next(request);
@@ -48,6 +51,8 @@ const refreshAndProceed = (
   request: HttpRequest<any>,
   next: HttpHandlerFn
 ) => {
+  //выполнить обновление токена,
+  //если он не выполняется
   if (!isRefreshing$.value) {
     isRefreshing$.next(true);
 
@@ -60,17 +65,18 @@ const refreshAndProceed = (
     );
   }
 
-  if (request.url.includes('refresh'))
-    return next(addToken(request, authService.token!));
+  //если запрос на обновление токена, то его пропускаем без ожиданий
+  if (request.url.includes('refresh')) return next(addToken(request, authService.token!));
 
+  //все оставшиеся запросы ставим в режим ожидания
+  //до завершения обновления токена, после чего
+  //отправляем их на сервер с уже обновленным токеном
   return isRefreshing$.pipe(
     filter((isRefreshing) => !isRefreshing),
     switchMap(() => {
       return next(addToken(request, authService.token!));
     })
   );
-
-  // return next(addToken(request, authService.token!))
 };
 
 //Добавление заголовка с токеном в запрос
