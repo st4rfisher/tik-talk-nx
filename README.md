@@ -1,28 +1,35 @@
 # TikTalk
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
+Небольшой проект социальной сети TikTalk с показом и настройкой своего профиля, отображением и добавлением постов, поиском пользователей их чатов.
+Разработан с использованием Angular, RxJs, NgRx, Nx и микросервисной архитектурой Domain Driven Design (DDD).
 
-## Development server
+Проект создан для демонстрации навыков работы с современными фронтенд-технологиями и архитектурными паттернами.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Технологии
 
-## Code scaffolding
+- **Angular 18** — модульная архитектура, standalone-компоненты
+- **NgRx** — управление состоянием (Store, Actions, Effects, Reducers)
+- **RxJS** — реактивное программирование (Observables, BehaviorSubjects, Signals)
+- **TypeScript** — строгая типизация
+- **Scss** - стилизация компонентов
+- **Nx** - инструмент для работы с монорепозиториями
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Используемые паттерны
 
-## Build
+- **SOLID** в построении сервисов и компонентов
+- **Композиция** в построении компонентов, где это возможно, вместо использования наследования
+- **Domain Driven Design (DDD)** - микросервисная архитектура проекта
+- **Feature-based архитектура** для построения store-модулей
+- **Observers** - получение данных по подписке
+- **Signals** - реактивное изменение данных в шаблонах компонентов
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Основные возможности
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# tik-talk
+- Авторизация с использованием JWT-токена, его хранение в Cookie и синхронизация с использованием сервиса
+- Interceptor для добавления JWT-токена к запросам и его обновление
+- Управление состоянием через NgRx Store
+- Реактивные формы и кастомные контролы (FormGroup + ControlValueAccessor)
+- Бесконечный скролл
+- Поиск пользователей и их чатов
+- Websocket для чатов
+- Использование Guard для доступа к интерфейсу профиля при маршрутизации
