@@ -4,6 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '@tt/auth';
 import { Router } from '@angular/router';
 import { TtInputComponent } from "@tt/common-ui";
+import { Store } from '@ngrx/store';
+import { authActions } from '../../data/store';
 
 @Component({
   selector: 'app-login-page',
@@ -14,6 +16,7 @@ import { TtInputComponent } from "@tt/common-ui";
 })
 
 export class LoginPageComponent {
+  store = inject(Store)
   authService = inject(AuthService);
   router = inject(Router);
   isPasswordVisible = signal<boolean>(false);
@@ -36,6 +39,8 @@ export class LoginPageComponent {
         this.router.navigate(['']);
         console.log(response);
       });
+
+      // this.store.dispatch(authActions.login({data: this.form.value}))
     }
   }
 }

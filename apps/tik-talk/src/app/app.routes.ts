@@ -1,7 +1,12 @@
 import { Routes } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
-import { accessGuard, LoginPageComponent } from '@tt/auth';
+import {
+  // AuthEffects,
+  // authFeature,
+  accessGuard,
+  LoginPageComponent
+} from '@tt/auth';
 import { chatsRoutes } from '@tt/chats';
 import { LayoutComponent } from '@tt/layout';
 import {
@@ -26,7 +31,7 @@ export const routes: Routes = [
         pathMatch: 'full',
         providers: [
           provideState(profileFeature),
-          provideEffects(ProfileEffects)
+          provideEffects(ProfileEffects),
         ]
       },
       {
@@ -38,6 +43,9 @@ export const routes: Routes = [
 
           provideState(postsFeature),
           provideEffects(PostsEffects),
+
+          // provideState(authFeature),
+          // provideEffects(AuthEffects),
         ]
       },
       {
@@ -72,5 +80,9 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent,
+    // providers: [
+    //   provideState(authFeature),
+    //   provideEffects(AuthEffects),
+    // ]
   },
 ];

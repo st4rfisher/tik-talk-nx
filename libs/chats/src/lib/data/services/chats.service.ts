@@ -30,6 +30,7 @@ export class ChatsService {
     this.wsAdapter.connent({
       url: `${BASE_API_URL}/chat/ws`,
       token: this.authService.token ?? '',
+      // token: this.authService.token() ?? '',
       handleMessage: this.handleWSMessage //или this.handleWSMessage.bind(this), но без стрелочной функции для this.handleWSMessage, для создания контекста this
     })
   }
@@ -38,6 +39,7 @@ export class ChatsService {
   connectWSThroughRxjs() {
     return this.wsAdapter.connent({
       url: `${BASE_API_URL}/chat/ws`,
+      // token: this.authService.token() ?? '',
       token: this.authService.token ?? '',
       handleMessage: this.handleWSMessage //или this.handleWSMessage.bind(this), но без стрелочной функции для this.handleWSMessage, для создания контекста this
     }) as Observable<ChatWSMessage>
