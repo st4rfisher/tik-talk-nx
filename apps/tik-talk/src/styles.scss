@@ -44,6 +44,14 @@ body {
     &:hover {
       color: var(--primary-color);
     }
+
+    &-danger {
+      color: var(--light-color);
+      
+      &:hover {
+        color: var(--danger-color);
+      }
+    }
   }
 
   &--primary {

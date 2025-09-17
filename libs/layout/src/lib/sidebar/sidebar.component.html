@@ -36,27 +36,32 @@
 </a>
 
 <footer class="footer">
-  @if (myProfile(); as myProfile) { @if(myProfile.avatarUrl) {
-  <img
-    class="avatar"
-    [src]="myProfile.avatarUrl | imageUrl"
-    alt=""
-    width="32"
-    height="32"
-  />
-  } @else {
-  <img
-    class="avatar"
-    src="/assets/images/default-avatar.svg"
-    alt=""
-    width="32"
-    height="32"
-  />
-  }
+  @if (myProfile(); as myProfile) {
+    @if(myProfile.avatarUrl) {
+      <img
+        class="avatar"
+        [src]="myProfile.avatarUrl | imageUrl"
+        alt=""
+        width="32"
+        height="32"
+      />
+    } @else {
+      <img
+        class="avatar"
+        src="/assets/images/default-avatar.svg"
+        alt=""
+        width="32"
+        height="32"
+      />
+    }
 
-  <span class="medium-text">{{ myProfile.username }}</span>
-  <a class="button button--action" [routerLink]="['/settings']">
-    <svg icon="settings" width="20" height="20"></svg>
-  </a>
+    <span class="medium-text">{{ myProfile.username }}</span>
+
+    <a class="button button--action-danger" (click)="logout()" [routerLink]="['/login']">
+      <svg icon="exit" width="20" height="20"></svg>
+    </a>
+    <a class="button button--action" [routerLink]="['/settings']">
+      <svg icon="settings" width="20" height="20"></svg>
+    </a>
   }
 </footer>

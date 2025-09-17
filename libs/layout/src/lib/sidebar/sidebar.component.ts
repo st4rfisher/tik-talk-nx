@@ -2,9 +2,10 @@ import { Component, inject } from '@angular/core';
 import { IconComponent, ImageUrlPipe } from '@tt/common-ui';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { ProfileService, profileActions, selectMyProfile, selectMySubscribersShortList } from '@tt/profile';
+import { profileActions, selectMyProfile, selectMySubscribersShortList } from '@tt/profile';
 import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
+import { AuthService } from '@tt/auth';
 
 @Component({
   selector: 'app-sidebar',
@@ -23,7 +24,7 @@ import { Store } from '@ngrx/store';
 
 export class SidebarComponent {
   store = inject(Store)
-  profileService = inject(ProfileService);
+  authService = inject(AuthService)
   subscribers$ = this.store.select(selectMySubscribersShortList)
   myProfile = this.store.selectSignal(selectMyProfile)
   menuItems = [
@@ -43,6 +44,10 @@ export class SidebarComponent {
       link: '/search',
     },
   ];
+
+  logout() {
+    this.authService.logout()
+  }
 
   ngOnInit(): void {
     this.store.dispatch(profileActions.getMyProfile())
