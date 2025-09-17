@@ -17,7 +17,15 @@
 
 <main class="main">
   <div class="left-side">
-    <app-post-feed></app-post-feed>
+    @if (isMyPage()) {
+      <app-post-feed/>
+    } @else {
+      <div class="empty-block">
+        <h3 class="h4">Здесь пока нет постов от пользователя</h3>
+        <svg icon="post" width="120" height="120"></svg>
+      </div>
+
+    }
   </div>
   <div class="right-side">
     <div class="block">
