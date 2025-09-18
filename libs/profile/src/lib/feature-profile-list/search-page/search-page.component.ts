@@ -25,7 +25,6 @@ import { WaIntersectionObservee, WaIntersectionObserverDirective } from '@ng-web
 export class SearchPageComponent {
   store = inject(Store)
   profiles = this.store.selectSignal(selectFilteredProfiles);
-  console = console
 
   fetchItems() {
     this.store.dispatch(profileActions.setPage({}))

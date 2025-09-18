@@ -40,7 +40,6 @@ export class ProfileEffects {
     return this.actions$.pipe(
       ofType(profileActions.getCurrentProfile),
       switchMap(({id}) => {
-        console.log(id)
         return this.profileService.getAccount(id)
       }),
       map(profile => profileActions.currentProfileLoaded({profile: profile}))
