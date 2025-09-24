@@ -1,6 +1,6 @@
 @if (profile(); as profile) {
-<div class="wrapper">
-  <app-avatar [size]="32" [url]="profile.avatarUrl" />
-  <div class="sub-title">{{ profile.firstName }} {{ profile.lastName }}</div>
-</div>
+  <div class="wrapper">
+    <app-avatar [size]="32" [url]="profile.avatarUrl" />
+    <div class="sub-title">{{ profile.firstName }} {{ profile.lastName }}</div>
+  </div>
 }
