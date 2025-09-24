@@ -17,7 +17,7 @@
   display: grid;
   grid-template-columns: 70px 1fr;
   grid-gap: 20px;
-
+  
   &__avatar {
     width: 70px;
     height: 70px;
@@ -38,3 +38,10 @@
   border: var(--light-border);
   margin-right: 4px;
 }
+
+
+.item-link {
+  color: #fff;
+  cursor: pointer;
+}
+

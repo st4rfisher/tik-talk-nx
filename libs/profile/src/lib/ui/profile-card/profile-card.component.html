@@ -1,11 +1,13 @@
 @if(profile) {
 <div class="profile-card">
   <div class="user">
-    <img class="user__avatar" [src]="profile.avatarUrl | imageUrl" alt="" />
-    <div class="user__name">
+    <a class="item-link" [routerLink]="['/profile', profile.id]" >
+      <img class="user__avatar" [src]="profile.avatarUrl | imageUrl" alt="" />
+    </a>
+    <a class="user__name item-link" [routerLink]="['/profile', profile.id]">
       <span class="h6">{{ profile.firstName }} {{ profile.lastName }}</span>
       <span class="sub-title">{{ profile.username }}</span>
-    </div>
+    </a>
   </div>
   <div class="profile-card__description">
     {{ profile.description }}
