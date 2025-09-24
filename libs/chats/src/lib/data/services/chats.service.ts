@@ -82,6 +82,7 @@ export class ChatsService {
     return this.http.get<Chat>(`${BASE_API_URL}/chat/${chatId}`).pipe(
       map((chat) => {
         //преобразовываем каждое сообщение в чате необходимыми параметрами
+        //(добавляем флаг наше ли это сообщение и данные, к кому относится сообщение)
         const patchedMessages = chat.messages.map((message: Message) => {
           return {
             ...message,
@@ -95,7 +96,9 @@ export class ChatsService {
 
         this.activeChatMessages.set(patchedMessages);
 
-        //преобразовываем каждый чат необходимыми параметрами
+        //преобразовываем приходящие данные активного чата необходимыми параметрами
+        //(находим, какие данные относятся к нашему профилю, а какие к собеседнику,
+        //добавляем поле с преобразованными сообщениями)
         return {
           ...chat,
           companion:

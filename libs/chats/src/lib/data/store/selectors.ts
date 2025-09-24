@@ -8,6 +8,5 @@ export const selectChats = createSelector(
 
 export const selectActiveChat = createSelector(
   chatsFeature.selectActiveChat,
-  (chat) => chat
+  (activeChat) => activeChat
 )
-

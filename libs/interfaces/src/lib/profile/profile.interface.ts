@@ -5,7 +5,7 @@ export interface Profile {
   subscribersAmount: number;
   firstName: string;
   lastName: string;
-  isActive: true;
+  isActive: boolean;
   stack: string[];
   city: string;
   description: string;

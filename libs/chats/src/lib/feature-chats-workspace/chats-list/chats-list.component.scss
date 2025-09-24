@@ -6,3 +6,8 @@
 .chats-input {
   padding: 16px 20px;
 }
+
+.wrapper {
+  height: calc(100vh - 97px);
+  overflow-y: auto;
+}

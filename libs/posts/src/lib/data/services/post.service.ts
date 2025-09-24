@@ -9,7 +9,6 @@ import { BASE_API_URL } from '../../../../../../global/variables';
 })
 export class PostService {
   private http = inject(HttpClient);
-  posts = signal<Post[]>([]);
 
   createPost(payload: PostCreateDTObject) {
     return this.http.post<Post>(`${BASE_API_URL}/post/`, payload).pipe(
@@ -24,14 +23,11 @@ export class PostService {
   }
 
   fetchPosts() {
-    return this.http
-      .get<Post[]>(`${BASE_API_URL}/post/`)
-      .pipe(tap((response) => this.posts.set(response)));
+    return this.http.get<Post[]>(`${BASE_API_URL}/post/`)
   }
 
   getCommentsByPostId(postId: number) {
-    return this.http
-      .get<Post>(`${BASE_API_URL}/post/${postId}`)
+    return this.http.get<Post>(`${BASE_API_URL}/post/${postId}`)
       .pipe(map((response) => response.comments));
   }
 }

@@ -42,7 +42,6 @@ export class ChatsListComponent {
   );
 
   constructor() {
-    // this.store.dispatch(chatsQueryActions.createActiveChat({id: 125}))
     this.store.dispatch(chatsActions.fetchMyChats())
   }
 }

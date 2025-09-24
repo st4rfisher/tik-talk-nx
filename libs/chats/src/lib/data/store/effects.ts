@@ -28,8 +28,9 @@ export class ChatsEffects {
   createActiveChat = createEffect(() => {
     return this.actions$.pipe(
       ofType(chatsActions.createActiveChat),
-      switchMap(({id}) => {
-        return this.chatsService.createChat(id)
+      switchMap(({userId}) => {
+        console.log('Создание чата с: ', userId)
+        return this.chatsService.createChat(userId)
       }),
       map(response => {
         // console.log(response)
@@ -41,8 +42,8 @@ export class ChatsEffects {
   fetchActiveChat = createEffect(() => {
     return this.actions$.pipe(
       ofType(chatsActions.fetchActiveChat),
-      switchMap(({id}) => {
-        return this.chatsService.getChatById(id as number)
+      switchMap(({chatId}) => {
+        return this.chatsService.getChatById(chatId)
       }),
       map(response => {
         // console.log(response)

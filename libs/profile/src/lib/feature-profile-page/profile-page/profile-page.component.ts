@@ -32,10 +32,21 @@ export class ProfilePageComponent {
   subscribers$ = this.store.select(selectMyProfileSubscribersList)
   subscribersCount$ = this.subscribers$.pipe(map(subscribers => subscribers?.length ?? 0));
   myProfile = this.store.selectSignal(selectMyProfile)
-  id = toSignal(this.route.params.pipe(map(parameters => parameters['id'])), { initialValue: '' });
+  id = toSignal(
+    this.route.params.pipe(
+      map(parameters => parameters['id'])
+    ),
+    { initialValue: '' }
+  );
   isMyPage = computed(() => {
     return this.id() === 'me' || this.id() === this.myProfile()?.id;
   });
+
+  constructor() {
+    this.profile$.subscribe(
+      (profile) => console.log('Данные профиля:', profile)
+    )
+  }
 
   profile$ = this.route.params
     .pipe(
@@ -48,7 +59,7 @@ export class ProfilePageComponent {
     );
 
   async sendMessage(userId: number) {
-    this.router.navigate(['/chats', 'new'], {queryParams: { userId }});
+    this.router.navigate(['/chats', 'new'], { queryParams: { userId } });
   }
 
   ngOnInit(): void {
