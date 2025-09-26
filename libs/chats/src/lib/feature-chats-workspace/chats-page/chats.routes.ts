@@ -14,7 +14,8 @@ export const chatsRoutes: Route[] = [
       },
       {
         path: ':id',
-        component: ChatWorkspaceComponent,
+        loadComponent: () => import('../chat-workspace/chat-workspace.component')
+          .then(component => component.ChatWorkspaceComponent)
       },
     ],
   },

@@ -2,12 +2,12 @@ import { Routes } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 import { accessGuard, LoginPageComponent } from '@tt/auth';
-import { chatsRoutes } from '@tt/chats';
+
 import { LayoutComponent } from '@tt/layout';
 import {
-  ProfilePageComponent,
-  SettingsPageComponent,
-  SearchPageComponent,
+  // ProfilePageComponent,
+  // SettingsPageComponent,
+  // SearchPageComponent,
   profileFeature,
   ProfileEffects
 } from '@tt/profile';
@@ -18,7 +18,9 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [accessGuard],
-    component: LayoutComponent,
+    // component: LayoutComponent,
+    loadComponent: () => import('@tt/layout')
+      .then(component => component.LayoutComponent),
     children: [
       {
         path: '',
@@ -31,7 +33,9 @@ export const routes: Routes = [
       },
       {
         path: 'profile/:id',
-        component: ProfilePageComponent,
+        // component: ProfilePageComponent,
+        loadComponent: () => import('@tt/profile')
+          .then(component => component.ProfilePageComponent),
         providers: [
           provideState(profileFeature),
           provideEffects(ProfileEffects),
@@ -42,7 +46,9 @@ export const routes: Routes = [
       },
       {
         path: 'settings',
-        component: SettingsPageComponent,
+        // component: SettingsPageComponent,
+        loadComponent: () => import('@tt/profile')
+          .then(component => component.SettingsPageComponent),
         providers: [
           provideState(profileFeature),
           provideEffects(ProfileEffects),
@@ -50,7 +56,9 @@ export const routes: Routes = [
       },
       {
         path: 'search',
-        component: SearchPageComponent,
+        // component: SearchPageComponent,
+        loadComponent: () => import('@tt/profile')
+          .then(component => component.SearchPageComponent),
         providers: [
           provideState(profileFeature),
           provideEffects(ProfileEffects)
@@ -58,7 +66,8 @@ export const routes: Routes = [
       },
       {
         path: 'chats',
-        loadChildren: () => chatsRoutes,
+        // loadChildren: () => chatsRoutes,
+        loadChildren: () => import('@tt/chats').then(routes => routes.chatsRoutes),
         providers: [
           provideState(chatsFeature),
           provideEffects(ChatsEffects),
@@ -71,6 +80,8 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginPageComponent,
+    loadComponent: () => import('@tt/auth')
+      .then(component => component.LoginPageComponent),
+    // component: LoginPageComponent,
   },
 ];
