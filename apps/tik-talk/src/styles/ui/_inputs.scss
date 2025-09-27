@@ -1,0 +1,27 @@
+.input {
+  display: block;
+  border: var(--light-border);
+  background-color: var(--dark-color);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  padding: 16px 0;
+  color: var(--light-color);
+
+  &:focus {
+    outline: none;
+  }
+
+  &--border-bottom {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    border-bottom: var(--light-border);
+  }
+}
+
+textarea.input {
+  resize: none;
+  width: 100%;
+}

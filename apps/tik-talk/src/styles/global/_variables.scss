@@ -1,0 +1,17 @@
+:root {
+  --site-bg-color: #000000;
+  --light-color: #ffffff;
+  --dark-color: #000000;
+  --grey-color: #5f646d;
+  --dark-grey: #404040;
+  --border: #ffffff;
+  --primary-color: #ae7aff;
+  --dark-hover-color: #161616;
+  --green-color: #98e9ab;
+  --danger-color: #e99898;
+  --companion-message-color: var(--dark-grey);
+  --mine-message-color: var(--primary-color);
+
+  --light-border: 1px solid var(--light-color);
+  --dark-border: 1px solid var(--light-color);
+}

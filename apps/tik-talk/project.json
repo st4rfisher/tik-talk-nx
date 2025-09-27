@@ -26,7 +26,7 @@
             "input": "public"
           }
         ],
-        "styles": ["apps/tik-talk/src/styles.scss"],
+        "styles": ["apps/tik-talk/src/styles/index.scss"],
         "scripts": []
       },
       "configurations": {
