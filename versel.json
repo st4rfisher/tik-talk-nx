@@ -1,5 +1,8 @@
 {
   "buildCommand": "npx nx build tik-talk --configuration production",
   "outputDirectory": "dist/apps/tik-talk",
-  "framework": "angular"
+  "framework": "angular",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }
