@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { BASE_API_URL } from '../../../../../global/variables';
+// import { BASE_API_URL } from '../../../../../global/variables';
+import { environment } from '@tt/environment';
 
 @Pipe({
   name: 'imageUrl',
@@ -9,6 +10,6 @@ import { BASE_API_URL } from '../../../../../global/variables';
 export class ImageUrlPipe implements PipeTransform {
   transform(value: string | null): string | null {
     if (!value) return null;
-    return `${BASE_API_URL}/${value}`;
+    return `${environment.apiUrl}/${value}`;
   }
 }

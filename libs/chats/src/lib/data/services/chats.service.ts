@@ -1,4 +1,4 @@
-import { BASE_API_URL } from 'global/variables';
+// import { BASE_API_URL } from 'global/variables';
 import { Chat, Message, LastMessageResponse } from '../interfaces/chats.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
@@ -11,6 +11,7 @@ import { ChatWSNativeService } from './chat-ws-native.service';
 import { ChatWSMessage } from '../interfaces/chat-ws-message.interface';
 import { isNewMessage, isUnreadMessage } from '../interfaces/type-guards';
 import { ChatWSRxjsService } from './chat-ws-rxjs.service';
+import { environment } from '@tt/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,7 @@ export class ChatsService {
   //подключение через нативный сокет
   connectWS() {
     this.wsAdapter.connent({
-      url: `${BASE_API_URL}/chat/ws`,
+      url: `${environment.apiUrl}/chat/ws`,
       token: this.authService.token ?? '',
       handleMessage: this.handleWSMessage //или this.handleWSMessage.bind(this), но без стрелочной функции для this.handleWSMessage, для создания контекста this
     })
@@ -37,7 +38,7 @@ export class ChatsService {
   //подключение через сокет, основанный на Rxjs
   connectWSThroughRxjs() {
     return this.wsAdapter.connent({
-      url: `${BASE_API_URL}/chat/ws`,
+      url: `${environment.apiUrl}/chat/ws`,
       token: this.authService.token ?? '',
       handleMessage: this.handleWSMessage //или this.handleWSMessage.bind(this), но без стрелочной функции для this.handleWSMessage, для создания контекста this
     }) as Observable<ChatWSMessage>
@@ -69,17 +70,17 @@ export class ChatsService {
   }
 
   createChat(userId: number) {
-    return this.http.post<Chat>(`${BASE_API_URL}/chat/${userId}`, {});
+    return this.http.post<Chat>(`${environment.apiUrl}/chat/${userId}`, {});
   }
 
   getMyChats() {
     return this.http.get<LastMessageResponse[]>(
-      `${BASE_API_URL}/chat/get_my_chats/`
+      `${environment.apiUrl}/chat/get_my_chats/`
     );
   }
 
   getChatById(chatId: number) {
-    return this.http.get<Chat>(`${BASE_API_URL}/chat/${chatId}`).pipe(
+    return this.http.get<Chat>(`${environment.apiUrl}/chat/${chatId}`).pipe(
       map((chat) => {
         //преобразовываем каждое сообщение в чате необходимыми параметрами
         //(добавляем флаг наше ли это сообщение и данные, к кому относится сообщение)
@@ -114,7 +115,7 @@ export class ChatsService {
   sendMessage(chatId: number, message: string) {
     console.log(chatId, message);
     return this.http.post(
-      `${BASE_API_URL}/message/send/${chatId}`,
+      `${environment.apiUrl}/message/send/${chatId}`,
       {},
       {
         params: {

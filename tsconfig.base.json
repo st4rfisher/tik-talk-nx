@@ -12,6 +12,7 @@
       "@tt/profile": ["libs/profile/src/index.ts"],
       "@tt/shared": ["libs/shared/src/index.ts"],
       "@tt/experimental": ["libs/experimental/src/index.ts"],
+      "@tt/environment": ["./apps/tik-talk/src//environments/environment.ts"],
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

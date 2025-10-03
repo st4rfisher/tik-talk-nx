@@ -3,7 +3,8 @@ import { Injectable, inject, signal } from '@angular/core';
 import { Profile } from "@tt/interfaces/profile"
 import { Pageable, StoreService } from '@tt/shared';
 import { map, tap } from 'rxjs';
-import { BASE_API_URL } from 'global/variables';
+// import { BASE_API_URL } from 'global/variables';
+import { environment } from '@tt/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,24 +14,24 @@ export class ProfileService {
   http = inject(HttpClient)
 
   getSubscribersShortList(limit: number = 3) {
-    return this.http.get<Pageable<Profile>>(`${BASE_API_URL}/account/subscribers/`)
+    return this.http.get<Pageable<Profile>>(`${environment.apiUrl}/account/subscribers/`)
       .pipe(map((response) => response.items.slice(0, limit)));
   }
 
   getTestAccounts() {
-    return this.http.get<Profile[]>(`${BASE_API_URL}/account/test_accounts`);
+    return this.http.get<Profile[]>(`${environment.apiUrl}/account/test_accounts`);
   }
 
   getAccount(id: string) {
-    return this.http.get<Profile>(`${BASE_API_URL}/account/${id}`);
+    return this.http.get<Profile>(`${environment.apiUrl}/account/${id}`);
   }
 
   getMyAccount() {
-    return this.http.get<Profile>(`${BASE_API_URL}/account/me`)
+    return this.http.get<Profile>(`${environment.apiUrl}/account/me`)
   }
 
   patchProfileData(data: Partial<Profile>) {
-    return this.http.patch<Profile>(`${BASE_API_URL}/account/me`, data);
+    return this.http.patch<Profile>(`${environment.apiUrl}/account/me`, data);
   }
 
   uploadAvatar(file: File) {
@@ -38,12 +39,12 @@ export class ProfileService {
 
     formData.append('image', file);
     return this.http.post<Profile>(
-      `${BASE_API_URL}/account/upload_image`,
+      `${environment.apiUrl}/account/upload_image`,
       formData
     );
   }
 
   filterProfiles(params: Record<string, any>) {
-    return this.http.get<Pageable<Profile>>(`${BASE_API_URL}/account/accounts`, { params })
+    return this.http.get<Pageable<Profile>>(`${environment.apiUrl}/account/accounts`, { params })
   }
 }

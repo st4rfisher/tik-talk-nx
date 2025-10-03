@@ -1,7 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { IconComponent, DragAndDropDirective } from '@tt/common-ui';
 import { profileActions, selectMyProfile } from '@tt/profile';
-import { BASE_API_URL } from '../../../../../../global/variables';
+import { environment } from '@tt/environment';
+// import { BASE_API_URL } from '../../../../../../global/variables';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -49,7 +50,7 @@ export class AvatarUploadComponent {
 
     if (this.myProfile()?.avatarUrl) {
       this.preview.set(
-        `${BASE_API_URL}/${this.myProfile()?.avatarUrl}`
+        `${environment.apiUrl}/${this.myProfile()?.avatarUrl}`
       );
     }
   }
