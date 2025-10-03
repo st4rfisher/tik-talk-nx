@@ -64,8 +64,13 @@ export class AuthService {
   }
 
   deleteTokens() {
-    this.cookieService.deleteAll();
     this.token = null;
     this.refreshToken = null;
+    this.cookieService.deleteAll('/');
+  }
+
+  test() {
+    return this.http.get(`${environment.apiUrl}/account/test_accounts`)
+      .pipe(tap((response) => console.log(response)));
   }
 }

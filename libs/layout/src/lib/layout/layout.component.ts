@@ -6,6 +6,8 @@ import { ChatsService } from '@tt/chats';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs';
+import { environment } from '@tt/environment';
+import { AuthService } from '@tt/auth';
 @Component({
   selector: 'app-layout',
   standalone: true,
@@ -15,6 +17,7 @@ import { tap } from 'rxjs';
 })
 
 export class LayoutComponent {
+  authService = inject(AuthService)
   #chatsService = inject(ChatsService)
   #store = inject(Store)
 
@@ -25,8 +28,10 @@ export class LayoutComponent {
       .subscribe()
   }
 
-  // ngOnInit(): void {
-  //   this.#chatsService.connectWS() //подключение через нативный сокет
-  //   // this.#chatsService.connectWSThroughRxjs().subscribe()
-  // }
+  ngOnInit(): void {
+    // this.#chatsService.connectWS() //подключение через нативный сокет
+    // this.#chatsService.connectWSThroughRxjs().subscribe()
+    this.authService.test().subscribe((response) => console.log(response))
+
+  }
 }

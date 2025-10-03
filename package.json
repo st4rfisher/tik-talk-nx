@@ -6,7 +6,9 @@
     "start": "nx run tik-talk:serve",
     "build": "nx build",
     "watch": "nx build --watch --configuration development",
-    "test": "nx test"
+    "test": "nx test",
+    "vercel:dev": "vercel dev",
+    "vercel:deploy": "vercel --prod"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +24,7 @@
     "@ng-web-apis/intersection-observer": "^4.12.0",
     "@ngrx/effects": "^18.0.0",
     "@ngrx/store": "^18.0.0",
+    "@vercel/node": "^5.3.24",
     "ngx-cookie-service": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -44,6 +47,7 @@
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^24.6.2",
     "@typescript-eslint/utils": "^8.19.0",
     "angular-eslint": "^18.3.0",
     "eslint": "^9.8.0",
@@ -57,6 +61,7 @@
     "nx": "20.4.2",
     "prettier": "^2.6.2",
     "typescript": "~5.4.2",
-    "typescript-eslint": "^8.19.0"
+    "typescript-eslint": "^8.19.0",
+    "vercel": "^48.1.6"
   }
 }
