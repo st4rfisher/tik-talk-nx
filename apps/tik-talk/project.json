@@ -43,7 +43,13 @@
               "maximumError": "4kB"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "apps/tik-talk/src/environments/environment.ts",
+              "with": "apps/tik-talk/src/environments/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "optimization": false,
