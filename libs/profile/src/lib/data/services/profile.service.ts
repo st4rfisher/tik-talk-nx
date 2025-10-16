@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { Profile } from "@tt/interfaces/profile"
-import { Pageable, StoreService } from '@tt/shared';
+import { Pageable } from '@tt/shared';
 import { map, tap } from 'rxjs';
 // import { BASE_API_URL } from 'global/variables';
 import { environment } from '@tt/environment';

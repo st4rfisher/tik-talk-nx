@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "@global": ["/global"],
+      "@tt/global": ["global/variables.ts"],
       "@tt/auth": ["libs/auth/src/index.ts"],
       "@tt/chats": ["libs/chats/src/index.ts"],
       "@tt/common-ui": ["libs/common-ui/src/index.ts"],
