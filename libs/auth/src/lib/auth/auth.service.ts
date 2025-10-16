@@ -30,12 +30,20 @@ export class AuthService {
   }
 
   login(payload: { username: string; password: string }) {
-    const formData: FormData = new FormData();
-    formData.append('username', payload.username);
-    formData.append('password', payload.password);
-
-    return this.http.post<TokenResponse>(`${environment.apiUrl}/auth/token`, formData)
+    // const formData: FormData = new FormData();
+    // formData.append('username', payload.username);
+    // formData.append('password', payload.password);
+    // const formData = {
+    //   username: payload.username,
+    //   password: payload.password
+    // };
+    return this.http.post<TokenResponse>(
+      `${environment.apiUrl}/login/auth/token`,
+      payload
+    )
       .pipe(tap((response) => this.saveTokens(response)));
+    // return this.http.post<TokenResponse>(`${environment.apiUrl}/auth/token`, formData)
+    //   .pipe(tap((response) => this.saveTokens(response)));
   }
 
   logout() {
@@ -67,5 +75,10 @@ export class AuthService {
     this.cookieService.deleteAll();
     this.token = null;
     this.refreshToken = null;
+  }
+
+  test() {
+    return this.http.get(`${environment.apiUrl}`)
+      .pipe(tap((response) => console.log(response)));
   }
 }
