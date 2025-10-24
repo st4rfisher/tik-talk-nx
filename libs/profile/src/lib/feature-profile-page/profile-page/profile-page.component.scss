@@ -76,8 +76,7 @@
   max-width: 400px;
 }
 
-.skeleton-user,
-.skeleton-post {
+.skeleton-user {
   display: grid;
 
   &__inner {
@@ -95,17 +94,6 @@
 
   &__inner {
     gap: 8px;
-  }
-}
-
-.skeleton-post {
-  align-items: flex-start;
-  grid-template-columns: 32px 1fr;
-  column-gap: 24px;
-  margin-bottom: 16px;
-
-  &__inner {
-    gap: 12px;
   }
 }
 

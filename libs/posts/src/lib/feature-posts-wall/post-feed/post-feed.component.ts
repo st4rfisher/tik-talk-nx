@@ -9,11 +9,20 @@ import { PostInputComponent } from '../../ui/post-input/post-input.component';
 import { PostComponent } from '../post/post.component';
 import { Store } from '@ngrx/store';
 import { postsActions, selectPosts } from '../../data/store';
+import { SkeletonComponent, SkeletonListComponent} from "@tt/common-ui";
+import { AsyncPipe } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-post-feed',
   standalone: true,
-  imports: [PostInputComponent, PostComponent],
+  imports: [
+    PostInputComponent,
+    PostComponent,
+    AsyncPipe,
+    SkeletonListComponent,
+    SkeletonComponent
+],
   templateUrl: './post-feed.component.html',
   styleUrl: './post-feed.component.scss',
 })
@@ -21,6 +30,9 @@ import { postsActions, selectPosts } from '../../data/store';
 export class PostFeedComponent {
   store = inject(Store)
   posts = this.store.selectSignal(selectPosts);
+  posts$ = this.store.select(selectPosts).pipe(
+    filter(posts => !!posts && posts.length > 0),
+  )
   hostElement = inject(ElementRef);
   renderer = inject(Renderer2); //прослойка для взаимодействия с элементами на разных платформах
 

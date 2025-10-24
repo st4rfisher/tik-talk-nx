@@ -1,5 +1,21 @@
 
-<app-post-input/>
-@for (post of posts(); track post.id) {
-  <app-post [post]="post" />
+@if(posts$ | async; as posts) {
+  <app-post-input/>
+  @for (post of posts; track post.id) {
+    <app-post [post]="post" />
+  }
+} @else {
+  <app-skeleton variant="rectangle" width="100%" height="75px"></app-skeleton>
+  <app-skeleton-list [skeletonCount]="6">
+    <ng-template>
+      <div class="skeleton-post">
+        <app-skeleton variant="circle" width="32px" height="32px"></app-skeleton>
+        <div class="skeleton-post__inner">
+          <app-skeleton variant="rectangle" width="500px" height="24px"></app-skeleton>
+          <app-skeleton variant="rectangle" width="400px" height="16px"></app-skeleton>
+          <app-skeleton variant="rectangle" width="200px" height="16px"></app-skeleton>
+        </div>
+      </div>
+    </ng-template>
+  </app-skeleton-list>
 }

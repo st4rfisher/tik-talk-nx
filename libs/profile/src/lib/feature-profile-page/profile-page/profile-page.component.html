@@ -27,30 +27,13 @@
 
 <main class="main">
   <div class="left-side">
-    @if(profile$ | async) {
-      @if (isMyPage()) {
-        <app-post-feed/>
-      } @else {
-        <div class="empty-block">
-          <h3 class="h4">Здесь пока нет постов от пользователя</h3>
-          <svg icon="post" width="120" height="120"></svg>
-        </div>
-      }
+    @if (isMyPage()) {
+      <app-post-feed/>
     } @else {
-      <app-skeleton variant="rectangle" width="100%" height="75px"></app-skeleton>
-
-      <app-skeleton-list [skeletonCount]="6">
-        <ng-template>
-          <div class="skeleton-post">
-            <app-skeleton variant="circle" width="32px" height="32px"></app-skeleton>
-            <div class="skeleton-post__inner">
-              <app-skeleton variant="rectangle" width="500px" height="24px"></app-skeleton>
-              <app-skeleton variant="rectangle" width="400px" height="16px"></app-skeleton>
-              <app-skeleton variant="rectangle" width="200px" height="16px"></app-skeleton>
-            </div>
-          </div>
-        </ng-template>
-      </app-skeleton-list>
+      <div class="empty-block">
+        <h3 class="h4">Здесь пока нет постов от пользователя</h3>
+        <svg icon="post" width="120" height="120"></svg>
+      </div>
     }
   </div>
   <div class="right-side">

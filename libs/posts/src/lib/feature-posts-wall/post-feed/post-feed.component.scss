@@ -6,3 +6,18 @@
   width: 100%;
   min-height: 100%;
 }
+
+.skeleton-post {
+  display: grid;
+  align-items: flex-start;
+  grid-template-columns: 32px 1fr;
+  column-gap: 24px;
+  margin-bottom: 16px;
+
+  &__inner {
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: auto;
+  }
+}
