@@ -5,7 +5,7 @@ import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { map, startWith, switchMap } from 'rxjs';
+import { filter, map, startWith, switchMap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -26,6 +26,7 @@ export class ChatsListComponent {
   store = inject(Store)
   filterChatsControl = new FormControl('');
   chats$ = this.store.select(selectChats).pipe(
+    filter(chats => !!chats && chats.length > 0),
     switchMap((chats) => {
       return this.filterChatsControl.valueChanges.pipe(
         startWith(''),
@@ -42,5 +43,9 @@ export class ChatsListComponent {
 
   constructor() {
     this.store.dispatch(chatsActions.fetchMyChats())
+  }
+
+  onClickActions(chatId: string | number) {
+    localStorage.setItem('lastActiveChatId', String(chatId))
   }
 }
