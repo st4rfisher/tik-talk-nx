@@ -7,8 +7,9 @@ import { map, switchMap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { IconComponent, ImageUrlPipe } from '@tt/common-ui';
-import { PostFeedComponent } from '@tt/posts';
+import { PostFeedComponent, selectPosts } from '@tt/posts';
 import { Store } from '@ngrx/store';
+import { SkeletonComponent, SkeletonListComponent } from "@tt/common-ui";
 
 @Component({
   selector: 'app-profile-page',
@@ -20,7 +21,9 @@ import { Store } from '@ngrx/store';
     AsyncPipe,
     ImageUrlPipe,
     PostFeedComponent,
-  ],
+    SkeletonComponent,
+    SkeletonListComponent
+],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
 })

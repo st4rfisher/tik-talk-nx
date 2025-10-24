@@ -38,6 +38,7 @@
 
 .medium-text {
   padding: 0 12px;
+  margin-bottom: 8px;
   overflow-x: hidden;
   text-overflow: ellipsis;
 }
@@ -52,13 +53,28 @@
 }
 
 .footer {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  grid-template-columns: 32px 1fr 24px 24px;
-  column-gap: 8px;
   background-color: var(--dark-hover-color);
   border-radius: 4px;
   padding: 4px 12px;
   margin-top: auto;
   font-weight: 700;
+}
+
+.skeleton-user, .user {
+  display: grid;
+  align-items: center;
+  column-gap: 12px;
+  padding: 16px 12px;
+  width: 100%;
+}
+
+.skeleton-user {
+  grid-template-columns: 32px 1fr;
+}
+
+.user {
+  grid-template-columns: 32px 1fr 24px 24px;
 }

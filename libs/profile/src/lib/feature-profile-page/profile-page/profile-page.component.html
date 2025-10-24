@@ -1,69 +1,135 @@
-@if(profile$ | async; as profile) {
 <header class="header">
-  <app-profile-header [profile]="profile" />
+  @if(profile$ | async; as profile) {
+    <app-profile-header [profile]="profile" />
 
-  @if(this.isMyPage()) {
-  <a class="button button--primary" [routerLink]="['/settings']">
-    Редактировать
-    <svg icon="settings" width="16" height="16"></svg>
-  </a>
+    @if(this.isMyPage()) {
+    <a class="button button--primary" [routerLink]="['/settings']">
+      Редактировать
+      <svg icon="settings" width="16" height="16"></svg>
+    </a>
+    } @else {
+    <button class="button button--primary" (click)="sendMessage(profile.id)">
+      Написать
+      <svg icon="send" width="16" height="16"></svg>
+    </button>
+    }
   } @else {
-  <button class="button button--primary" (click)="sendMessage(profile.id)">
-    Написать
-    <svg icon="send" width="16" height="16"></svg>
-  </button>
+    <div class="skeleton-user">
+      <app-skeleton variant="circle" width="112px" height="112px"></app-skeleton>
+      <div class="skeleton-user__inner">
+        <app-skeleton variant="rectangle" width="100%" height="24px"></app-skeleton>
+        <app-skeleton variant="rectangle" width="100px" height="18px"></app-skeleton>
+      </div>
+      <app-skeleton variant="rectangle" width="155px" height="42px"></app-skeleton>
+    </div>
   }
 </header>
 
 <main class="main">
   <div class="left-side">
-    @if (isMyPage()) {
-      <app-post-feed/>
+    @if(profile$ | async) {
+      @if (isMyPage()) {
+        <app-post-feed/>
+      } @else {
+        <div class="empty-block">
+          <h3 class="h4">Здесь пока нет постов от пользователя</h3>
+          <svg icon="post" width="120" height="120"></svg>
+        </div>
+      }
     } @else {
-      <div class="empty-block">
-        <h3 class="h4">Здесь пока нет постов от пользователя</h3>
-        <svg icon="post" width="120" height="120"></svg>
-      </div>
+      <app-skeleton variant="rectangle" width="100%" height="75px"></app-skeleton>
 
+      <app-skeleton-list [skeletonCount]="6">
+        <ng-template>
+          <div class="skeleton-post">
+            <app-skeleton variant="circle" width="32px" height="32px"></app-skeleton>
+            <div class="skeleton-post__inner">
+              <app-skeleton variant="rectangle" width="500px" height="24px"></app-skeleton>
+              <app-skeleton variant="rectangle" width="400px" height="16px"></app-skeleton>
+              <app-skeleton variant="rectangle" width="200px" height="16px"></app-skeleton>
+            </div>
+          </div>
+        </ng-template>
+      </app-skeleton-list>
     }
   </div>
   <div class="right-side">
     <div class="block">
       <h3 class="h6">
-        Подписчики
-        <span class="subscribers-count">{{ subscribersCount$ | async }}</span>
+        @if(subscribersCount$ | async; as subscribersCount) {
+          Подписчики
+          <span class="subscribers-count">{{ subscribersCount}}</span>
+        } @else {
+          <app-skeleton variant="rectangle" width="300px" height="32px"></app-skeleton>
+        }
       </h3>
 
-      <div class="subscribers-container">
-        @for (subscriber of subscribers$ | async; track subscriber.id) {
-        <a class="subscribers-link" [routerLink]="['/profile', subscriber.id]">
-          <img
-            class="avatar"
-            [src]="subscriber.avatarUrl | imageUrl"
-            [alt]="subscriber.username"
-            width="36"
-            height="36"
-          />
+      @if(subscribers$ | async; as subscribers) {
+        <div class="subscribers-container">
+          @for (subscriber of subscribers; track subscriber.id) {
+            <a class="subscribers-link" [routerLink]="['/profile', subscriber.id]">
+              <img
+                class="avatar"
+                [src]="subscriber.avatarUrl | imageUrl"
+                [alt]="subscriber.username"
+                width="36"
+                height="36"
+              />
+            </a>
+          }
+        </div>
+        <a class="subscribers-button" [routerLink]="['/search']">
+          <svg icon="plus" height="16" width="16"></svg>
         </a>
-        }
-      </div>
-
-      <a class="subscribers-button" [routerLink]="['/search']">
-        <svg icon="plus" height="16" width="16"></svg>
-      </a>
-    </div>
-
-    <div class="block">
-      <h3 class="h6">Навыки</h3>
-      @for (skill of profile.stack; track skill) {
-      <span class="tag">{{ skill }}</span>
+      } @else {
+        <app-skeleton-list class="skeleton-container" [skeletonCount]="5">
+            <ng-template>
+              <app-skeleton variant="circle" width="36px" height="36px"></app-skeleton>
+            </ng-template>
+        </app-skeleton-list>
       }
     </div>
 
     <div class="block">
-      <h3 class="h6">О себе</h3>
-      <p class="medium-text">{{ profile.description }}</p>
+      <h3 class="h6">
+        @if(profile$ | async; as profile) {
+          Навыки
+        } @else {
+          <app-skeleton variant="rectangle" width="300px" height="32px"></app-skeleton>
+        }
+      </h3>
+
+      @if(profile$ | async; as profile) {
+        @for (skill of profile.stack; track skill) {
+          <span class="tag">{{ skill }}</span>
+        }
+      } @else {
+        <app-skeleton-list class="skeleton-container" [skeletonCount]="5">
+          <ng-template>
+            <app-skeleton variant="rectangle" width="50px" height="27px"></app-skeleton>
+          </ng-template>
+        </app-skeleton-list>
+      }
+    </div>
+
+    <div class="block">
+      <h3 class="h6">
+        @if(profile$ | async; as profile) {
+          О себе
+        } @else {
+          <app-skeleton variant="rectangle" width="300px" height="32px"></app-skeleton>
+        }
+      </h3>
+
+      @if(profile$ | async; as profile) {
+        <p class="medium-text">{{ profile.description }}</p>
+      } @else {
+        <app-skeleton-list class="skeleton-list" [skeletonCount]="5">
+          <ng-template>
+            <app-skeleton variant="rectangle" width="300px" height="16px"></app-skeleton>
+          </ng-template>
+        </app-skeleton-list>
+      }
     </div>
   </div>
 </main>
-}

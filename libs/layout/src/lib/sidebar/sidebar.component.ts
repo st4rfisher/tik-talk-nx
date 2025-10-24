@@ -6,6 +6,7 @@ import { profileActions, selectMyProfile, selectMySubscribersShortList } from '@
 import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AuthService } from '@tt/auth';
+import { SkeletonListComponent, SkeletonComponent } from "@tt/common-ui";
 
 @Component({
   selector: 'app-sidebar',
@@ -17,7 +18,9 @@ import { AuthService } from '@tt/auth';
     RouterLink,
     AsyncPipe,
     ImageUrlPipe,
-  ],
+    SkeletonListComponent,
+    SkeletonComponent
+],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
