@@ -10,11 +10,18 @@
     />
   </label>
 </div>
-@for(chat of chats$ | async; track chat.id) {
-  <button
-    chats-item
-    [chat]="chat"
-    [routerLink]="[chat.id]"
-    routerLinkActive="active"
-  ></button>
-}
+<div class="wrapper">
+  @if(chats$ | async; as chats) {
+
+      @for(chat of chats; track chat.id) {
+        <button
+          chats-item
+          [chat]="chat"
+          [routerLink]="[chat.id]"
+          routerLinkActive="active"
+        ></button>
+      }
+  } @else {
+    <div class="spinner"></div>
+  }
+</div>

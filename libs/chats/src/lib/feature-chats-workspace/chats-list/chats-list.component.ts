@@ -16,8 +16,8 @@ import { Store } from '@ngrx/store';
     AsyncPipe,
     RouterLink,
     RouterLinkActive,
-    ReactiveFormsModule,
-  ],
+    ReactiveFormsModule
+],
   templateUrl: './chats-list.component.html',
   styleUrl: './chats-list.component.scss',
 })
@@ -27,7 +27,6 @@ export class ChatsListComponent {
   filterChatsControl = new FormControl('');
   chats$ = this.store.select(selectChats).pipe(
     switchMap((chats) => {
-      console.log(chats)
       return this.filterChatsControl.valueChanges.pipe(
         startWith(''),
         map((inputValue) => {

@@ -8,6 +8,8 @@
 }
 
 .wrapper {
-  height: calc(100vh - 97px);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 88px);
   overflow-y: auto;
 }

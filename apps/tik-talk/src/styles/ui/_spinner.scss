@@ -1,0 +1,13 @@
+.spinner {
+  --size: 40px;
+  --thickness: 5px;
+  --color: var(--primary-color);
+  --track: var(--grey-color);
+  border-radius: 50%;
+  width: var(--size);
+  height: var(--size);
+  border: var(--thickness) solid var(--track);
+  border-top-color: var(--color);
+  animation: spin .7s linear infinite;
+  margin: auto;
+}

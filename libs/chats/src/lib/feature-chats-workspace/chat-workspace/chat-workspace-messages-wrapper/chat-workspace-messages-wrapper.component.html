@@ -1,6 +1,10 @@
 <div class="messages-wrapper">
-  @for (message of messages(); track message.id) {
-    <app-chat-workspace-message [message]="message" />
+  @if(messages()) {
+    @for (message of messages(); track message.id) {
+      <app-chat-workspace-message [message]="message" />
+    }
+  } @else {
+    <div class="spinner"></div>
   }
 </div>
 

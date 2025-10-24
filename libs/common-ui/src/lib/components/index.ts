@@ -4,6 +4,8 @@ import { InfiniteScrollTriggerComponent } from "./infinite-scroll-trigger/infini
 import { TtInputComponent } from "./tt-input/tt-input.component";
 import { StackInputComponent } from "./stack-input/stack-input.component";
 import { AddressInputComponent } from "./address-input/address-input.component";
+import { SkeletonComponent } from "./skeletons/skeleton/skeleton.component";
+import { SkeletonListComponent } from "./skeletons/skeleton-list/skeleton-list.component";
 
 export {
   AvatarComponent,
@@ -11,5 +13,7 @@ export {
   InfiniteScrollTriggerComponent,
   TtInputComponent,
   StackInputComponent,
-  AddressInputComponent
+  AddressInputComponent,
+  SkeletonComponent,
+  SkeletonListComponent
 }
