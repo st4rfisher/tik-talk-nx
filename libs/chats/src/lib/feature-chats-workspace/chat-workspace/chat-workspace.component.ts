@@ -24,7 +24,6 @@ export class ChatWorkspaceComponent {
   route = inject(ActivatedRoute);
   router = inject(Router);
   actions$ = inject(Actions)
-
   activeChat$ = this.route.params
     .pipe(
       switchMap(({id}) => {
@@ -48,6 +47,5 @@ export class ChatWorkspaceComponent {
           filter(chat=> !!chat)
         );
       }
-    )
-  );
+    ));
 }
