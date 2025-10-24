@@ -1,0 +1,13 @@
+{
+  "name": "tik-talk-proxy",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "@vercel/node": "^5.3.24"
+  },
+  "devDependencies": {
+    "typescript": "~5.4.2"
+  }
+}

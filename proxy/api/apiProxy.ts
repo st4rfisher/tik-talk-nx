@@ -1,5 +1,4 @@
 import { VercelRequest, VercelRequestBody, VercelResponse } from '@vercel/node';
-import { json, text } from 'node:stream/consumers';
 import { BaseProxy } from './baseProxy';
 //@ts-ignore
 import { endPoints } from '../../global/variables';
