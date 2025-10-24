@@ -1,7 +1,7 @@
 body {
-  font-family: 'JetBrains Mono', sans-serif;
+  font-family: var(--font-family);
   background-color: var(--site-bg-color);
   color: var(--light-color);
-  background: url('/assets/images/bg.jpg') no-repeat;
+  background: var(--site-bg) no-repeat;
   background-size: cover;
 }
