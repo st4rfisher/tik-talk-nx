@@ -12,7 +12,6 @@ import { ChatWSMessage } from '../interfaces/chat-ws-message.interface';
 import { isNewMessage, isUnreadMessage } from '../interfaces/type-guards';
 import { ChatWSRxjsService } from './chat-ws-rxjs.service';
 import { environment } from '@tt/environment';
-import { endPoints } from '@tt/global';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +29,7 @@ export class ChatsService {
   //подключение через нативный сокет
   connectWS() {
     this.wsAdapter.connent({
-      url: `${endPoints.targetUrl}/chat/ws`,
+      url: `${environment.targetUrl}/chat/ws`,
       token: this.authService.token ?? '',
       handleMessage: this.handleWSMessage //или this.handleWSMessage.bind(this), но без стрелочной функции для this.handleWSMessage, для создания контекста this
     })
@@ -39,7 +38,7 @@ export class ChatsService {
   //подключение через сокет, основанный на Rxjs
   connectWSThroughRxjs() {
     return this.wsAdapter.connent({
-      url: `${endPoints.targetUrl}/chat/ws`,
+      url: `${environment.targetUrl}/chat/ws`,
       token: this.authService.token ?? '',
       handleMessage: this.handleWSMessage //или this.handleWSMessage.bind(this), но без стрелочной функции для this.handleWSMessage, для создания контекста this
     }) as Observable<ChatWSMessage>
