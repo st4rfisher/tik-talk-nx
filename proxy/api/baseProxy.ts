@@ -1,5 +1,5 @@
 import type { VercelResponse } from '@vercel/node';
-import type { Endpoints, ProxyRequestBody } from '../interfaces/proxy.interface';
+import type { Endpoints, ProxyRequestBody } from './proxy.interface';
 //@ts-ignore
 import { replacePrefix } from "../../libs/shared/src/index"
 

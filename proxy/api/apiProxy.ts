@@ -1,8 +1,8 @@
 import { VercelRequest, VercelRequestBody, VercelResponse } from '@vercel/node';
 import { BaseProxy } from './baseProxy';
 //@ts-ignore
-import { endPoints } from '../../global/variables';
-import { Credentials } from '../interfaces/proxy.interface';
+import { endPoints } from './endpoints';
+import { Credentials } from './proxy.interface';
 
 export class ApiProxy extends BaseProxy {
   constructor() {

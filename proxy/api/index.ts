@@ -2,7 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { BaseProxy } from './baseProxy';
 import { ApiProxy } from './apiProxy';
 //@ts-ignore
-import { endPoints } from '../../global/variables';
+import { endPoints } from './endpoints';
 
 const baseProxy = new BaseProxy(endPoints)
 const apiProxy = new ApiProxy()
